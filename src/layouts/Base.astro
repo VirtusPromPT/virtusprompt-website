@@ -1,0 +1,83 @@
+---
+import '@fontsource/space-grotesk/300.css';
+import '@fontsource/space-grotesk/400.css';
+import '@fontsource/space-grotesk/500.css';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/500.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE, ROUTES, type Lang, type RouteKey } from '../config';
+import { strings } from '../i18n/strings';
+
+interface Props {
+  lang: Lang;
+  route: RouteKey;
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+const { lang, route, title, description, noindex = false } = Astro.props;
+const t = strings[lang];
+const pageTitle = title ? `${title} | ${SITE.brand}` : t.meta.title;
+const pageDesc = description ?? t.meta.description;
+const canonical = new URL(ROUTES[route][lang], SITE.url).href;
+const alt = (l: Lang) => new URL(ROUTES[route][l], SITE.url).href;
+const ogImage = new URL(lang === 'en' ? '/og-en.png' : '/og-pt.png', SITE.url).href;
+---
+<!doctype html>
+<html lang={lang === 'en' ? 'en' : 'pt-PT'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDesc} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="pt-PT" href={alt('pt')} />
+    <link rel="alternate" hreflang="en" href={alt('en')} />
+    <link rel="alternate" hreflang="x-default" href={alt('pt')} />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="theme-color" content="#EEF0EF" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#011837" media="(prefers-color-scheme: dark)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.brand} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDesc} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'pt_PT'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Apply the visitor's saved theme before the page paints, to avoid a flash -->
+    <script is:inline>
+      try { var t = localStorage.getItem('vp-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: SITE.brand,
+      legalName: SITE.legalName,
+      url: SITE.url,
+      logo: new URL('/icon-512.png', SITE.url).href,
+      areaServed: 'PT',
+      description: strings.pt.meta.description,
+    })} />
+  </head>
+  <body>
+    <a class="skip" href="#main">{lang === 'en' ? 'Skip to content' : 'Saltar para o conteúdo'}</a>
+    <Header lang={lang} route={route} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <script>
+      import '../scripts/theme';
+    </script>
+  </body>
+</html>

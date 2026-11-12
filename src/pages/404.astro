@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import { strings } from '../i18n/strings';
+const pt = strings.pt.notFound;
+const en = strings.en.notFound;
+---
+<Base lang="pt" route="home" title={pt.title} noindex>
+  <section class="page"><div class="wrap">
+    <p class="mono eyebrow">Erro 404</p>
+    <h1>{pt.title}</h1>
+    <p class="lede">{pt.text}</p>
+    <p class="lede" lang="en">{en.text}</p>
+    <div class="actions">
+      <a class="btn btn--fill" href="/">{pt.back}</a>
+      <a class="btn" href="/en/" lang="en">{en.back}</a>
+    </div>
+  </div></section>
+</Base>

@@ -1,0 +1,187 @@
+---
+import { Image } from 'astro:assets';
+import rodrigo from '../assets/rodrigo.jpg';
+import { SITE, ROUTES, type Lang } from '../config';
+import { strings } from '../i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = strings[lang];
+const clients = [
+  { file: 'appning', name: 'Appning by Forvia' },
+  { file: 'mindera', name: 'Mindera' },
+  { file: 'wearemeta', name: 'We Are Meta' },
+  { file: 'customarginal', name: 'Custo Marginal' },
+];
+---
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="mono eyebrow">{t.hero.eyebrow}</p>
+      <h1>{t.hero.titleBefore}<strong>{t.hero.titleStrong}</strong>{t.hero.titleAfter}<span class="caret" aria-hidden="true"></span></h1>
+      <p class="lede">{t.hero.lede}</p>
+      <div class="ctas">
+        <a class="btn btn--fill" href={SITE.calendly} target="_blank" rel="noopener">{t.cta.call} <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn" href="#contact">{t.cta.proposal}</a>
+      </div>
+      <p class="mono note">{t.hero.note}</p>
+    </div>
+
+    <div class="sheet" aria-hidden="true">
+      <div class="drawing">
+        <div class="mark"></div>
+        <svg viewBox="0 0 500 400" fill="none">
+          <circle class="ln" cx="250" cy="185" r="150" stroke-dasharray="3 6" opacity=".45" />
+          <line class="ln-dim" x1="250" y1="0" x2="250" y2="400" stroke-dasharray="10 4 2 4" />
+          <line class="ln-dim" x1="0" y1="185" x2="500" y2="185" stroke-dasharray="10 4 2 4" />
+          <line class="ln" x1="100" y1="362" x2="400" y2="362" />
+          <path class="ln" d="M100 356v12M400 356v12" />
+          <text x="250" y="386" text-anchor="middle" class="acc">{t.hero.drawing.bottom}</text>
+          <path class="ln" d="M352 112 L404 62 H488" />
+          <circle class="dot" cx="352" cy="112" r="3" />
+          <text x="488" y="54" text-anchor="end">{t.hero.drawing.top}</text>
+          <path class="ln" d="M170 250 L96 300 H12" />
+          <circle class="dot" cx="170" cy="250" r="3" />
+          <text x="12" y="292">{t.hero.drawing.left}</text>
+          <text x="12" y="24">FIG. 01 — VP</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="clients" aria-label={t.clients}>
+  <div class="wrap">
+    <p class="mono">{t.clients}</p>
+    <div class="logos">
+      {clients.map((c) => (
+        <span class="logo" role="img" aria-label={c.name} style={`--src:url('/images/${c.file}.webp')`}></span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="plate" id="services">
+  <div class="wrap">
+    <div class="plate-head">
+      <p class="mono eyebrow">{t.services.eyebrow}</p>
+      <h2>{t.services.title}</h2>
+      <p class="lede">{t.services.lede}</p>
+    </div>
+    <div class="spec">
+      {t.services.items.map((s) => (
+        <div class="srow">
+          <span class="code">{s.code}</span>
+          <div><h3>{s.title}</h3><p>{s.text}</p></div>
+          <ul>{s.bullets.map((b) => <li>{b}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="plate" aria-labelledby="platforms">
+  <div class="wrap">
+    <div class="plate-head">
+      <p class="mono eyebrow">{t.platforms.eyebrow}</p>
+      <h2 id="platforms">{t.platforms.title}</h2>
+      <p class="lede">{t.platforms.lede}</p>
+    </div>
+    <div class="cells">
+      {t.platforms.items.map((p) => (
+        <div class="cell"><span class="mono">{p.tag}</span><h3>{p.title}</h3><p>{p.text}</p></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="plate" id="process">
+  <div class="wrap">
+    <div class="plate-head">
+      <p class="mono eyebrow">{t.process.eyebrow}</p>
+      <h2>{t.process.title}</h2>
+    </div>
+    <ol class="flow">
+      {t.process.items.map((step, i) => (
+        <li><span class="mono">{t.process.step} {i + 1}</span><h3>{step.title}</h3><p>{step.text}</p></li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<section class="plate" id="about">
+  <div class="wrap about">
+    <figure class="photo">
+      <Image src={rodrigo} alt={t.about.photoAlt} width={600} height={600} quality={80} loading="lazy" />
+      <figcaption><span class="mono" style="color:var(--fg)">Rodrigo Fernandes</span><span class="mono">{t.about.role}</span></figcaption>
+    </figure>
+    <div class="about-copy">
+      <p class="mono eyebrow">{t.about.eyebrow}</p>
+      <h2>{t.about.title}</h2>
+      {t.about.paragraphs.map((p) => <p>{p}</p>)}
+    </div>
+  </div>
+</section>
+
+<section class="plate" id="faq">
+  <div class="wrap faq-grid">
+    <div class="plate-head" style="margin-bottom:0">
+      <p class="mono eyebrow">{t.faq.eyebrow}</p>
+      <h2>{t.faq.title}</h2>
+      <p class="lede">{t.faq.ledeBefore}<a href="#contact">{t.faq.ledeLink}</a>.</p>
+    </div>
+    <div class="faq">
+      {t.faq.items.map((item, i) => (
+        <details open={i === 0}>
+          <summary><span class="mono">Q.{i + 1}</span><span>{item.q}</span></summary>
+          <div class="ans"><p>{item.a}</p></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="plate" id="contact" style="border-bottom:0">
+  <div class="wrap contact">
+    <div>
+      <p class="mono eyebrow">{t.contact.eyebrow}</p>
+      <h2>{t.contact.title}</h2>
+      <p class="lede">{t.contact.lede}</p>
+      <dl class="cmeta">
+        <div><dt>{t.contact.meetingLabel}</dt><dd><a href={SITE.calendly} target="_blank" rel="noopener">{t.contact.meetingLink}</a></dd></div>
+        <div><dt>{t.contact.whereLabel}</dt><dd>{t.contact.where}</dd></div>
+      </dl>
+    </div>
+
+    <!-- Netlify Forms: submissions appear in the Netlify dashboard and can be emailed to you -->
+    <form name="contact" method="POST" action={ROUTES.thanks[lang]} data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact" />
+      <input type="hidden" name="language" value={lang} />
+      <p class="hp"><label>Não preencher / Don’t fill this in: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+      <div class="row">
+        <div class="field"><label for="f-name">{t.contact.form.name}</label><input id="f-name" name="name" autocomplete="name" required /></div>
+        <div class="field"><label for="f-company">{t.contact.form.company}</label><input id="f-company" name="company" autocomplete="organization" /></div>
+      </div>
+      <div class="field"><label for="f-email">{t.contact.form.email}</label><input id="f-email" name="email" type="email" autocomplete="email" placeholder={t.contact.form.emailPlaceholder} required /></div>
+      <fieldset class="reasons">
+        <legend>{t.contact.form.reason}</legend>
+        {t.contact.form.reasons.map((r, i) => (
+          <>
+            <input type="radio" name="reason" id={`f-r${i}`} value={r} checked={i === 0} />
+            <label for={`f-r${i}`}>{r}</label>
+          </>
+        ))}
+      </fieldset>
+      <div class="field"><label for="f-msg">{t.contact.form.message}</label><textarea id="f-msg" name="message" placeholder={t.contact.form.messagePlaceholder} required></textarea></div>
+      <p class="consent">{t.contact.form.consentBefore}<a href={ROUTES.privacy[lang]}>{t.contact.form.consentLink}</a>.</p>
+      <div class="form-foot">
+        <span></span>
+        <button class="btn btn--fill" type="submit">{t.contact.form.submit} <span class="arr" aria-hidden="true">→</span></button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  import '../scripts/faq';
+</script>

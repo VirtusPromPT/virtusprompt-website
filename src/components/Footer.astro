@@ -1,0 +1,21 @@
+---
+import { SITE, ROUTES, type Lang } from '../config';
+import { strings } from '../i18n/strings';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = strings[lang];
+const home = ROUTES.home[lang];
+---
+<footer>
+  <div class="wrap mono">
+    <a class="brand" href={home} style="color:var(--fg); letter-spacing:0; text-transform:none; font-size:1rem"><i class="vp" aria-hidden="true"></i>{SITE.brand}</a>
+    <nav aria-label="Footer">
+      <a href={`${home}#services`}>{t.nav.services}</a>
+      <a href={`${home}#about`}>{t.nav.about}</a>
+      <a href={`${home}#faq`}>{t.nav.faq}</a>
+      <a href={ROUTES.privacy[lang]}>{t.footer.privacy}</a>
+    </nav>
+    <span>© {new Date().getFullYear()} {SITE.legalName}</span>
+  </div>
+</footer>

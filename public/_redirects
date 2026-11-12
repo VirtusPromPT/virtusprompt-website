@@ -1,0 +1,8 @@
+# Send the bare domain to www (the canonical address)
+https://virtusprompt.com/*        https://www.virtusprompt.com/:splat  301!
+
+# Old Squarespace addresses
+/about              /#about        301
+/services-content   /#services     301
+/services           /#services     301
+/contact            /#contact     301

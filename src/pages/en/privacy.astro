@@ -1,0 +1,41 @@
+---
+// DRAFT privacy policy (English version of /privacidade). Review before going live.
+import Base from '../../layouts/Base.astro';
+import { SITE } from '../../config';
+---
+<Base lang="en" route="privacy" title="Privacy policy" description="How VirtusPromPT handles the personal data collected on this website.">
+  <section class="page"><div class="wrap">
+    <p class="mono eyebrow">Privacy</p>
+    <h1>Privacy policy</h1>
+    <p class="mono updated">Last updated: November 2026</p>
+    <div class="prose">
+      <h2>Who is responsible for your data</h2>
+      <p>{SITE.legalName} ({SITE.brand}), based in Portugal. For any question about your data, write to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+
+      <h2>What data we collect</h2>
+      <ul>
+        <li>The details you send through the contact form: name, company (optional), email, reason for contact and message.</li>
+        <li>If you book a meeting, the details you enter on Calendly.</li>
+      </ul>
+      <p>We don’t use advertising or tracking cookies. The site only stores your light or dark mode preference, in your own browser.</p>
+
+      <h2>What we use it for</h2>
+      <p>Only to reply to your message, prepare proposals and manage any business relationship that follows. The legal basis is your request and the pre-contractual steps it involves.</p>
+
+      <h2>Who we share it with</h2>
+      <p>We don’t sell or hand over your data. We use service providers that process it on our behalf:</p>
+      <ul>
+        <li>Netlify (website hosting and form handling);</li>
+        <li>Google Workspace (email);</li>
+        <li>Calendly (meeting scheduling, if you use it).</li>
+      </ul>
+      <p>Some of these providers may process data outside the European Union, with the safeguards required by the GDPR, such as standard contractual clauses.</p>
+
+      <h2>How long we keep it</h2>
+      <p>We keep contact details for up to 12 months after the last communication, unless a contract follows, in which case the legal retention periods apply.</p>
+
+      <h2>Your rights</h2>
+      <p>You can ask to access, correct, delete, restrict or port your data, or object to its processing, by writing to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. You can also complain to the Portuguese data protection authority, CNPD (<a href="https://www.cnpd.pt" target="_blank" rel="noopener">cnpd.pt</a>).</p>
+    </div>
+  </div></section>
+</Base>

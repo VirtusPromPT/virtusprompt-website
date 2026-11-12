@@ -1,0 +1,13 @@
+---
+import Base from '../../layouts/Base.astro';
+import { strings } from '../../i18n/strings';
+const t = strings.en.thanks;
+---
+<Base lang="en" route="thanks" title={t.title} noindex>
+  <section class="page"><div class="wrap">
+    <p class="mono eyebrow">Contact</p>
+    <h1>{t.title}</h1>
+    <p class="lede">{t.text}</p>
+    <div class="actions"><a class="btn btn--fill" href="/en/">{t.back}</a></div>
+  </div></section>
+</Base>

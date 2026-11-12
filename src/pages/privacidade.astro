@@ -1,0 +1,41 @@
+---
+// DRAFT privacy policy. Review it (ideally with your accountant or a lawyer) before going live.
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+---
+<Base lang="pt" route="privacy" title="Política de privacidade" description="Como a VirtusPromPT trata os dados pessoais recolhidos neste site.">
+  <section class="page"><div class="wrap">
+    <p class="mono eyebrow">Privacidade</p>
+    <h1>Política de privacidade</h1>
+    <p class="mono updated">Última atualização: novembro de 2026</p>
+    <div class="prose">
+      <h2>Quem é responsável pelos dados</h2>
+      <p>{SITE.legalName} ({SITE.brand}), com sede em Portugal. Para qualquer questão sobre os seus dados, escreva para <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+
+      <h2>Que dados recolhemos</h2>
+      <ul>
+        <li>Os dados que nos envia pelo formulário de contacto: nome, empresa (opcional), email, motivo do contacto e mensagem.</li>
+        <li>Se agendar uma reunião, os dados que indicar no Calendly.</li>
+      </ul>
+      <p>Não usamos cookies de publicidade nem de rastreio. O site guarda apenas, no seu próprio navegador, a sua preferência de modo claro ou escuro.</p>
+
+      <h2>Para que usamos os dados</h2>
+      <p>Apenas para responder ao seu contacto, preparar propostas e gerir a relação comercial que daí resulte. A base legal é o seu pedido e as diligências pré-contratuais que ele implica.</p>
+
+      <h2>Com quem partilhamos</h2>
+      <p>Não vendemos nem cedemos os seus dados. Recorremos a prestadores de serviços que os tratam por nossa conta:</p>
+      <ul>
+        <li>Netlify (alojamento do site e receção do formulário);</li>
+        <li>Google Workspace (email);</li>
+        <li>Calendly (agendamento de reuniões, se o usar).</li>
+      </ul>
+      <p>Alguns destes prestadores podem tratar dados fora da União Europeia, com as garantias previstas no RGPD, como as cláusulas contratuais-tipo.</p>
+
+      <h2>Durante quanto tempo</h2>
+      <p>Guardamos os dados do contacto até 12 meses após a última comunicação, salvo se for estabelecida uma relação contratual, caso em que se aplicam os prazos legais.</p>
+
+      <h2>Os seus direitos</h2>
+      <p>Pode pedir acesso, retificação, apagamento, limitação ou portabilidade dos seus dados, e opor-se ao seu tratamento, escrevendo para <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Tem também o direito de apresentar reclamação à Comissão Nacional de Proteção de Dados (<a href="https://www.cnpd.pt" target="_blank" rel="noopener">cnpd.pt</a>).</p>
+    </div>
+  </div></section>
+</Base>
