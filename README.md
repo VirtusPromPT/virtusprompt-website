@@ -76,3 +76,8 @@ Submissions are also listed under **Forms** in the dashboard. Spam is filtered w
 
 ## Day-to-day updates
 Edit the files, then `git commit` and `git push`. Netlify rebuilds and publishes in about a minute. Every pull request also gets its own preview link.
+
+## Copyright
+
+© Virtuous Prompts, Lda. All rights reserved.
+This repository is public so it can be deployed and reviewed. That doesn't grant permission to reuse its code, text or images. The VirtusPromPT name and logo, the portrait photo and the client logos belong to their respective owners and may not be reused.
