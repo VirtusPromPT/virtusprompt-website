@@ -6,6 +6,7 @@ export const SITE = {
   url: 'https://www.virtusprompt.com',
   calendly: 'https://calendly.com/rodrigo-fernandes-virtusprompt/30min',
   email: 'contact@virtusprompt.com',
+  simvou: 'https://simvou.pt/?utm_source=virtusprompt&utm_medium=referral',
 };
 
 export type Lang = 'pt' | 'en';

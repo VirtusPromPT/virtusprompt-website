@@ -103,6 +103,20 @@ p{margin:0}
 .logo::before{content:""; position:absolute; inset:4px 8px; background:var(--fg); opacity:.78; -webkit-mask:var(--src) center/contain no-repeat; mask:var(--src) center/contain no-repeat}
 @media (max-width:760px){.clients .wrap{grid-template-columns:minmax(0,1fr)} .logos{grid-template-columns:repeat(2,minmax(0,1fr)); border-top:1px solid var(--line)} .logo{border-bottom:1px solid var(--line)}}
 
+/* products: same grid as the clients row */
+.products{border-bottom:1px solid var(--line)}
+.products .wrap{display:grid; grid-template-columns:180px minmax(0,1fr); align-items:center; gap:24px; padding-block:12px}
+.product{display:grid; grid-template-columns:64px minmax(0,1fr) auto; align-items:center; gap:24px; padding:20px 24px; border-left:1px solid var(--line); border-right:1px solid var(--line); text-decoration:none; color:var(--fg); transition:background .15s}
+.product:hover{background:color-mix(in srgb, var(--panel) 55%, transparent)}
+.product .pmark{width:64px; height:64px; background:var(--fg); opacity:.85; -webkit-mask:var(--src) center/contain no-repeat; mask:var(--src) center/contain no-repeat}
+.product .pname{display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-size:1.5rem; letter-spacing:-.02em}
+.product .pname .mono{color:var(--accent)}
+.product .ptext{display:block; color:var(--dim); margin-top:4px; max-width:60ch}
+.product .plink{white-space:nowrap; color:var(--fg); display:inline-flex; gap:8px; align-items:center}
+.product .plink .arr{color:var(--accent); transition:transform .15s}
+.product:hover .plink .arr{transform:translate(2px,-2px)}
+@media (max-width:760px){.products .wrap{grid-template-columns:minmax(0,1fr)} .product{grid-template-columns:48px minmax(0,1fr); border:1px solid var(--line); padding:16px} .product .pmark{width:48px; height:48px} .product .plink{grid-column:2}}
+
 /* plates */
 .plate{padding-block:clamp(56px,8vw,96px); border-bottom:1px solid var(--line)}
 .plate-head{display:grid; gap:14px; margin-bottom:clamp(32px,5vw,56px); max-width:760px}

@@ -23,6 +23,11 @@ export const strings = {
       drawing: { bottom: 'DA IDEIA AO PRODUTO', top: 'ARQUITETURA', left: 'ENTREGA' },
     },
     clients: 'Clientes e parceiros',
+    products: {
+      label: 'Produtos',
+      tag: 'Produto próprio',
+      simvou: 'Convites digitais com confirmação de presenças, para casamentos, batizados e festas.',
+    },
     services: {
       eyebrow: 'Serviços',
       title: 'Da decisão técnica à aplicação em produção',
@@ -144,6 +149,11 @@ export const strings = {
       drawing: { bottom: 'FROM IDEA TO PRODUCT', top: 'ARCHITECTURE', left: 'DELIVERY' },
     },
     clients: 'Clients and partners',
+    products: {
+      label: 'Products',
+      tag: 'Our product',
+      simvou: 'Digital invitations with RSVPs, for weddings, baptisms and parties.',
+    },
     services: {
       eyebrow: 'Services',
       title: 'From technical decisions to apps in production',
