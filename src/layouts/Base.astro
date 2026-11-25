@@ -7,6 +7,13 @@ import '@fontsource/ibm-plex-sans/500.css';
 import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/500.css';
 import '../styles/global.css';
+// The fonts used above the fold on every page. Preloading them avoids a late font swap,
+// which was shifting the hero (headline, intro text and drawing) on desktop.
+import fontDisplayLight from '@fontsource/space-grotesk/files/space-grotesk-latin-300-normal.woff2?url';
+import fontDisplayMedium from '@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2?url';
+import fontBody from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2?url';
+import fontMono from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url';
+const preloadFonts = [fontDisplayLight, fontDisplayMedium, fontBody, fontMono];
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE, ROUTES, type Lang, type RouteKey } from '../config';
@@ -18,8 +25,12 @@ interface Props {
   title?: string;
   description?: string;
   noindex?: boolean;
+  /** schema.org type of this page (WebPage, AboutPage, CollectionPage...). */
+  pageType?: string;
+  /** Extra schema.org nodes for this page, such as a Service or an Article. */
+  schema?: Record<string, unknown>[];
 }
-const { lang, route, title, description, noindex = false } = Astro.props;
+const { lang, route, title, description, noindex = false, pageType = 'WebPage', schema = [] } = Astro.props;
 const t = strings[lang];
 const pageTitle = title ? `${title} | ${SITE.brand}` : t.meta.title;
 const pageDesc = description ?? t.meta.description;
@@ -30,8 +41,23 @@ const inLanguage = lang === 'en' ? 'en' : 'pt-PT';
 
 // Structured data (schema.org): one linked graph of the company, the website and this page.
 const home = new URL('/', SITE.url).href;
+const homeLang = new URL(ROUTES.home[lang], SITE.url).href;
 const orgId = `${home}#organization`;
+const personId = `${home}#person`;
 const sameAs = SITE.profiles.map((p) => p.url);
+const breadcrumb =
+  route === 'home'
+    ? []
+    : [
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${canonical}#breadcrumb`,
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: SITE.brand, item: homeLang },
+            { '@type': 'ListItem', position: 2, name: title ?? pageTitle, item: canonical },
+          ],
+        },
+      ];
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -52,7 +78,7 @@ const jsonLd = {
         availableLanguage: ['pt-PT', 'en'],
       },
       areaServed: { '@type': 'Country', name: 'Portugal' },
-      founder: { '@type': 'Person', name: SITE.founder, jobTitle: t.about.role },
+      employee: { '@id': personId },
       ...(SITE.nipc ? { taxID: SITE.nipc } : {}),
       ...(SITE.registeredOffice
         ? { address: { '@type': 'PostalAddress', streetAddress: SITE.registeredOffice, addressCountry: 'PT' } }
@@ -68,6 +94,13 @@ const jsonLd = {
       },
     },
     {
+      '@type': 'Person',
+      '@id': personId,
+      name: SITE.person,
+      jobTitle: t.about.role,
+      worksFor: { '@id': orgId },
+    },
+    {
       '@type': 'WebSite',
       '@id': `${home}#website`,
       url: home,
@@ -76,7 +109,7 @@ const jsonLd = {
       publisher: { '@id': orgId },
     },
     {
-      '@type': 'WebPage',
+      '@type': pageType,
       '@id': `${canonical}#webpage`,
       url: canonical,
       name: pageTitle,
@@ -84,7 +117,10 @@ const jsonLd = {
       inLanguage,
       isPartOf: { '@id': `${home}#website` },
       about: { '@id': orgId },
+      ...(breadcrumb.length ? { breadcrumb: { '@id': `${canonical}#breadcrumb` } } : {}),
     },
+    ...breadcrumb,
+    ...schema,
   ],
 };
 ---
@@ -104,6 +140,7 @@ const jsonLd = {
         <link rel="alternate" hreflang="x-default" href={alt('pt')} />
       </>
     )}
+    {preloadFonts.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -134,6 +171,7 @@ const jsonLd = {
     <Footer lang={lang} />
     <script>
       import '../scripts/theme';
+      import '../scripts/menu';
     </script>
   </body>
 </html>

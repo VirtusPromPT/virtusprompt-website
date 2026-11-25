@@ -1,0 +1,118 @@
+---
+// One inner page (service, about, case studies or guide), rendered from src/i18n/pages.ts.
+import { Image } from 'astro:assets';
+import rodrigo from '../assets/rodrigo.jpg';
+import Base from '../layouts/Base.astro';
+import { SITE, ROUTES, type Lang } from '../config';
+import { strings } from '../i18n/strings';
+import { PAGES, isDraft, isPublished, splitTodos, type PageId } from '../i18n/pages';
+
+interface Props { id: PageId; lang: Lang }
+const { id, lang } = Astro.props;
+const page = PAGES[id];
+const c = page[lang];
+const t = strings[lang];
+const draft = isDraft(id);
+const inLanguage = lang === 'en' ? 'en' : 'pt-PT';
+const url = new URL(ROUTES[id][lang], SITE.url).href;
+const orgId = new URL('/#organization', SITE.url).href;
+
+// A published page only links to other published pages; a draft can link to anything, for previewing.
+const related = page.related.filter((r) => draft || isPublished(r));
+
+const pageType = page.kind === 'about' ? 'AboutPage' : page.kind === 'cases' ? 'CollectionPage' : 'WebPage';
+const schema: Record<string, unknown>[] = [];
+if (page.kind === 'service') {
+  schema.push({
+    '@type': 'Service',
+    '@id': `${url}#service`,
+    name: c.h1,
+    description: c.description,
+    serviceType: c.eyebrow,
+    provider: { '@id': orgId },
+    areaServed: { '@type': 'Country', name: 'Portugal' },
+    url,
+  });
+}
+if (page.kind === 'guide') {
+  schema.push({
+    '@type': 'Article',
+    '@id': `${url}#article`,
+    headline: c.h1,
+    description: c.description,
+    inLanguage,
+    datePublished: page.updated,
+    dateModified: page.updated,
+    author: { '@id': new URL('/#person', SITE.url).href },
+    publisher: { '@id': orgId },
+    mainEntityOfPage: { '@id': `${url}#webpage` },
+  });
+}
+const fmtDate = new Date(page.updated).toLocaleDateString(lang === 'en' ? 'en-GB' : 'pt-PT', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+<Base lang={lang} route={id} title={c.title} description={c.description} noindex={draft} pageType={pageType} schema={schema}>
+  <article class="page inner">
+    <div class="wrap">
+      <nav class="crumbs mono" aria-label="Breadcrumb">
+        <a href={ROUTES.home[lang]}>{t.page.home}</a><span aria-hidden="true">/</span><span aria-current="page">{c.eyebrow}</span>
+      </nav>
+      {draft && <p class="draft-note" role="note">{t.page.draft}</p>}
+      <p class="mono eyebrow">{c.eyebrow}</p>
+      <h1>{c.h1}</h1>
+      <p class="lede">{c.lede}</p>
+      {page.kind === 'guide' && <p class="mono updated">{t.page.updated} <time datetime={page.updated}>{fmtDate}</time></p>}
+      <div class="actions">
+        <a class="btn btn--fill" href={SITE.calendly} target="_blank" rel="noopener">{t.cta.call} <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn" href={`${ROUTES.home[lang]}#contact`}>{t.cta.proposal}</a>
+      </div>
+
+      <div class="inner-body">
+        {page.kind === 'about' && (
+          <figure class="photo">
+            <Image src={rodrigo} alt={t.about.photoAlt} width={600} height={600} quality={80} loading="lazy" />
+            <figcaption><span class="mono" style="color:var(--fg)">{SITE.person}</span><span class="mono">{t.about.role}</span></figcaption>
+          </figure>
+        )}
+        <div class="prose">
+          {c.sections.map((s) => (
+            <section>
+              <h2>{s.h2}</h2>
+              {s.p?.map((p) => <p>{splitTodos(p).map((x) => (x.todo ? <mark class="todo">{x.text}</mark> : x.text))}</p>)}
+              {s.list && s.ordered && <ol>{s.list.map((li) => <li>{splitTodos(li).map((x) => (x.todo ? <mark class="todo">{x.text}</mark> : x.text))}</li>)}</ol>}
+              {s.list && !s.ordered && <ul>{s.list.map((li) => <li>{splitTodos(li).map((x) => (x.todo ? <mark class="todo">{x.text}</mark> : x.text))}</li>)}</ul>}
+              {s.link && <p><a href={s.link.href} target="_blank" rel="noopener">{s.link.label} ↗</a></p>}
+            </section>
+          ))}
+        </div>
+      </div>
+
+      {c.faq && (
+        <section class="inner-faq" aria-labelledby="page-faq">
+          <h2 id="page-faq">{t.page.faq}</h2>
+          <div class="faq">
+            {c.faq.map((item, i) => (
+              <details open={i === 0}>
+                <summary><span class="mono">Q.{i + 1}</span><span>{item.q}</span></summary>
+                <div class="ans"><p>{splitTodos(item.a).map((x) => (x.todo ? <mark class="todo">{x.text}</mark> : x.text))}</p></div>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {related.length > 0 && (
+        <nav class="related" aria-labelledby="page-related">
+          <h2 id="page-related" class="mono">{t.page.related}</h2>
+          <ul>
+            {related.map((r) => (
+              <li><a href={ROUTES[r][lang]}><span>{PAGES[r][lang].h1}</span> <span class="arr" aria-hidden="true">→</span></a></li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </div>
+  </article>
+  <script>
+    import '../scripts/faq';
+  </script>
+</Base>

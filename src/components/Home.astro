@@ -3,10 +3,13 @@ import { Image } from 'astro:assets';
 import rodrigo from '../assets/rodrigo.jpg';
 import { SITE, ROUTES, type Lang } from '../config';
 import { strings } from '../i18n/strings';
+import { isPublished, type PageId } from '../i18n/pages';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const t = strings[lang];
+// Inner pages are linked from here only once they are published (no TODOs left in src/i18n/pages.ts).
+const pageLink = (id?: string) => (id && isPublished(id as PageId) ? ROUTES[id as PageId][lang] : undefined);
 const clients = [
   { file: 'appning', name: 'Appning by Forvia' },
   { file: 'mindera', name: 'Mindera' },
@@ -52,7 +55,7 @@ const clients = [
 
 <section class="clients" aria-label={t.clients}>
   <div class="wrap">
-    <p class="mono">{t.clients}</p>
+    <p class="mono">{pageLink('case-studies') ? <a href={pageLink('case-studies')}>{t.clients} →</a> : t.clients}</p>
     <div class="logos">
       {clients.map((c) => (
         <span class="logo" role="img" aria-label={c.name} style={`--src:url('/images/${c.file}.webp')`}></span>
@@ -67,7 +70,7 @@ const clients = [
     <a class="product" href={SITE.simvou} target="_blank" rel="noopener">
       <span class="pmark" aria-hidden="true" style="--src:url('/images/simvou.svg')"></span>
       <span>
-        <span class="pname">Sim, vou <span class="mono">{t.products.tag}</span></span>
+        <h2 class="pname">Sim, vou <span class="mono">{t.products.tag}</span></h2>
         <span class="ptext">{t.products.simvou}</span>
       </span>
       <span class="plink mono">simvou.pt <span class="arr" aria-hidden="true">↗</span></span>
@@ -86,7 +89,7 @@ const clients = [
       {t.services.items.map((s) => (
         <div class="srow">
           <span class="code">{s.code}</span>
-          <div><h3>{s.title}</h3><p>{s.text}</p></div>
+          <div><h3>{s.title}</h3><p>{s.text}</p>{pageLink(s.page) && <a class="svc-more" href={pageLink(s.page)}>{t.page.learnMore} <span class="arr" aria-hidden="true">→</span></a>}</div>
           <ul>{s.bullets.map((b) => <li>{b}</li>)}</ul>
         </div>
       ))}
@@ -103,7 +106,7 @@ const clients = [
     </div>
     <div class="cells">
       {t.platforms.items.map((p) => (
-        <div class="cell"><span class="mono">{p.tag}</span><h3>{p.title}</h3><p>{p.text}</p></div>
+        <div class="cell"><span class="mono">{p.tag}</span><h3>{p.title}</h3><p>{p.text}</p>{pageLink('page' in p ? p.page : undefined) && <a class="svc-more" href={pageLink('page' in p ? p.page : undefined)}>{t.page.learnMore} <span class="arr" aria-hidden="true">→</span></a>}</div>
       ))}
     </div>
   </div>
@@ -133,6 +136,7 @@ const clients = [
       <p class="mono eyebrow">{t.about.eyebrow}</p>
       <h2>{t.about.title}</h2>
       {t.about.paragraphs.map((p) => <p>{p}</p>)}
+      {pageLink('about') && <a class="svc-more" href={pageLink('about')}>{t.page.learnMore} <span class="arr" aria-hidden="true">→</span></a>}
     </div>
   </div>
 </section>
@@ -172,7 +176,7 @@ const clients = [
     <form name="contact" method="POST" action={ROUTES.thanks[lang]} data-netlify="true" netlify-honeypot="bot-field">
       <input type="hidden" name="form-name" value="contact" />
       <input type="hidden" name="language" value={lang} />
-      <p class="hp"><label>Não preencher / Don’t fill this in: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
+      <p class="hp" aria-hidden="true"><label>Não preencher / Don’t fill this in: <input name="bot-field" tabindex="-1" autocomplete="off" /></label></p>
       <div class="row">
         <div class="field"><label for="f-name">{t.contact.form.name}</label><input id="f-name" name="name" autocomplete="name" required /></div>
         <div class="field"><label for="f-company">{t.contact.form.company}</label><input id="f-company" name="company" autocomplete="organization" /></div>
