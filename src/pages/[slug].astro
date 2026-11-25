@@ -1,0 +1,11 @@
+---
+// Portuguese inner pages (services, about, case studies, guides). Content lives in src/i18n/pages.ts.
+import ContentPage from '../components/ContentPage.astro';
+import { PAGES, PAGE_IDS } from '../i18n/pages';
+
+export function getStaticPaths() {
+  return PAGE_IDS.map((id) => ({ params: { slug: PAGES[id].slug.pt }, props: { id } }));
+}
+const { id } = Astro.props;
+---
+<ContentPage id={id} lang="pt" />

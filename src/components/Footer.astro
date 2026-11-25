@@ -1,6 +1,7 @@
 ---
 import { SITE, ROUTES, type Lang } from '../config';
 import { strings } from '../i18n/strings';
+import { PAGES, PAGE_IDS, isPublished } from '../i18n/pages';
 
 interface Props { lang: Lang }
 const { lang } = Astro.props;
@@ -12,10 +13,17 @@ const home = ROUTES.home[lang];
     <a class="brand" href={home} style="color:var(--fg); letter-spacing:0; text-transform:none; font-size:1rem"><i class="vp" aria-hidden="true"></i>{SITE.brand}</a>
     <nav aria-label="Footer">
       <a href={`${home}#services`}>{t.nav.services}</a>
-      <a href={`${home}#about`}>{t.nav.about}</a>
+      <a href={isPublished('about') ? ROUTES.about[lang] : `${home}#about`}>{t.nav.about}</a>
       <a href={`${home}#faq`}>{t.nav.faq}</a>
+      {PAGE_IDS.filter((id) => PAGES[id].kind === 'service' && isPublished(id)).map((id) => <a href={ROUTES[id][lang]}>{PAGES[id][lang].eyebrow}</a>)}
       <a href={ROUTES.privacy[lang]}>{t.footer.privacy}</a>
     </nav>
-    <span>© {new Date().getFullYear()} {SITE.legalName}</span>
+    <p class="legal">
+      <span>© {new Date().getFullYear()} {SITE.legalName}</span>
+      {SITE.nipc && <span>{t.footer.nipc} {SITE.nipc}</span>}
+      {SITE.registeredOffice && <span>{t.footer.office}: {SITE.registeredOffice}</span>}
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      {SITE.profiles.map((p) => <a href={p.url} target="_blank" rel="me noopener">{p.label}</a>)}
+    </p>
   </div>
 </footer>

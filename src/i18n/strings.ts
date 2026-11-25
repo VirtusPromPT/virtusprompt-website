@@ -4,11 +4,19 @@
 export const strings = {
   pt: {
     meta: {
-      title: 'VirtusPromPT | Desenvolvimento de Aplicações e Software em Portugal',
+      title: 'Desenvolvimento de Aplicações e Software à Medida | VirtusPromPT',
       description:
         'Desenvolvimento de aplicações e software à medida para mobile, desktop e web, e consultoria tecnológica para empresas.',
     },
-    nav: { services: 'Serviços', process: 'Processo', about: 'Quem somos', faq: 'FAQ', contact: 'Contacto', main: 'Principal' },
+    nav: { services: 'Serviços', process: 'Processo', about: 'Quem somos', cases: 'Clientes', faq: 'FAQ', contact: 'Contacto', main: 'Principal', menu: 'Menu' },
+    page: {
+      home: 'Início',
+      related: 'Também pode interessar',
+      faq: 'Perguntas frequentes',
+      updated: 'Atualizado em',
+      learnMore: 'Saber mais',
+      draft: 'Rascunho: os campos a amarelo ainda estão por preencher. Enquanto houver campos por preencher, esta página não é indexada nem tem links no site.',
+    },
     cta: { meeting: 'Agendar reunião', call: 'Agendar conversa · 30 min', proposal: 'Pedir proposta' },
     theme: { toDark: 'Mudar para modo escuro', toLight: 'Mudar para modo claro' },
     langLabel: 'Idioma',
@@ -30,23 +38,26 @@ export const strings = {
     },
     services: {
       eyebrow: 'Serviços',
-      title: 'Da decisão técnica à aplicação em produção',
+      title: 'Desenvolvimento de aplicações, consultoria tecnológica e entrevistas técnicas',
       lede: 'Três formas de trabalharmos juntos. Pode começar por uma e passar para outra quando fizer sentido.',
       items: [
         {
           code: 'DEV',
-          title: 'Desenvolvimento de software',
+          page: 'custom-software',
+          title: 'Desenvolvimento de aplicações e software à medida',
           text: 'Aplicações e produtos digitais à medida, da ideia à implementação, com rigor técnico e visão de produto.',
           bullets: ['Aplicações mobile', 'Aplicações desktop', 'Aplicações e plataformas web', 'Integrações e reforço de equipas'],
         },
         {
           code: 'CON',
+          page: 'technology-consulting',
           title: 'Consultoria tecnológica',
           text: 'Apoio nas decisões antes e durante o desenvolvimento, para que o investimento tenha impacto real no negócio.',
           bullets: ['Análise de requisitos e validação de ideias', 'Arquitetura e escolha de tecnologia', 'Auditoria de apps existentes', 'Roadmap técnico'],
         },
         {
           code: 'REC',
+          page: 'technical-interviews',
           title: 'Recrutamento técnico e mentoria',
           text: 'Entrevistas técnicas estruturadas para validar candidatos, e mentoria para quem está a crescer na equipa.',
           bullets: ['Entrevistas técnicas', 'Grelhas de avaliação', 'Mentoria individual', 'Revisões de código acompanhadas'],
@@ -58,7 +69,7 @@ export const strings = {
       title: 'Aplicações para mobile, desktop e web',
       lede: 'Desenvolvemos aplicações e soluções de software para as plataformas onde o seu negócio precisa de estar.',
       items: [
-        { tag: 'mobile', title: 'Aplicações mobile', text: 'Apps para smartphone e tablet, pensadas para quem as usa todos os dias.' },
+        { tag: 'mobile', page: 'mobile-apps', title: 'Aplicações mobile', text: 'Apps para smartphone e tablet, pensadas para quem as usa todos os dias.' },
         { tag: 'desktop', title: 'Aplicações desktop', text: 'Software para computador, de ferramentas internas a produtos para os seus clientes.' },
         { tag: 'web', title: 'Aplicações e plataformas web', text: 'Portais, plataformas e soluções web que crescem com o negócio.' },
       ],
@@ -77,7 +88,7 @@ export const strings = {
     about: {
       eyebrow: 'Quem somos',
       title: 'Um parceiro técnico próximo, que fala a língua do negócio',
-      role: 'Sócio-gerente',
+      role: 'Fundador e CEO',
       photoAlt: 'Retrato de Rodrigo Fernandes',
       paragraphs: [
         'Na VirtusPromPT ajudamos empresas a transformar ideias em soluções digitais sólidas. Juntamos conhecimento técnico profundo a uma abordagem prática, para entregar depressa sem comprometer a estrutura que permite crescer.',
@@ -90,18 +101,20 @@ export const strings = {
       ledeBefore: 'Não encontra a sua pergunta? ',
       ledeLink: 'Envie-nos uma mensagem',
       items: [
-        { q: 'Que tipo de serviços prestam?', a: 'Desenvolvimento de aplicações, software à medida e consultoria tecnológica para empresas, desde a definição da solução até à implementação, com foco em robustez, escalabilidade e impacto no negócio.' },
-        { q: 'Trabalham apenas com aplicações mobile?', a: 'Não. Desenvolvemos aplicações e soluções de software para mobile, desktop e web, e damos apoio em arquitetura e produto.' },
-        { q: 'Como funciona o processo de trabalho?', a: 'Começamos com uma conversa, definimos abordagem, âmbito e plano de execução, e trabalhamos em proximidade, com comunicação clara e entregas faseadas.' },
-        { q: 'Trabalham com empresas de qualquer dimensão?', a: 'Sim. Adaptamos a abordagem ao contexto, ao orçamento e à maturidade tecnológica de cada empresa, de negócios a começar a empresas estabelecidas.' },
-        { q: 'Fazem consultoria antes do desenvolvimento?', a: 'Sim, e muitas vezes é o melhor ponto de partida: requisitos, validação de ideias, arquitetura, tecnologia e roadmap, antes de escrever código.' },
-        { q: 'Como posso pedir uma proposta?', a: 'Use o formulário abaixo ou agende uma conversa. Ajuda partilhar uma breve descrição do projeto, os objetivos e o prazo pretendido.' },
+        { q: 'Que serviços presta a VirtusPromPT?', a: 'A VirtusPromPT presta três serviços: desenvolvimento de aplicações e software à medida, consultoria tecnológica, e entrevistas técnicas e mentoria. Acompanhamos cada empresa desde a definição da solução até à implementação, com foco em robustez, escalabilidade e impacto no negócio.' },
+        { q: 'A VirtusPromPT só desenvolve aplicações mobile?', a: 'Não. A VirtusPromPT desenvolve aplicações e software para mobile, desktop e web, e também dá apoio em arquitetura e produto.' },
+        { q: 'Como funciona o processo de trabalho?', a: 'O processo tem quatro passos: uma conversa inicial para perceber o contexto e os objetivos; a definição da abordagem, do âmbito e do plano de execução; o desenvolvimento, com entregas faseadas que pode ver e testar; e o acompanhamento depois da entrega, para evoluir e manter o software.' },
+        { q: 'Trabalham com empresas de qualquer dimensão?', a: 'Sim. A VirtusPromPT trabalha com empresas de qualquer dimensão, de negócios a começar a empresas estabelecidas, e adapta a abordagem ao contexto, ao orçamento e à maturidade tecnológica de cada uma.' },
+        { q: 'Fazem consultoria antes do desenvolvimento?', a: 'Sim, e muitas vezes é o melhor ponto de partida. Antes de escrever código, a consultoria tecnológica define os requisitos, valida a ideia e escolhe a arquitetura, a tecnologia e o roadmap.' },
+        { q: 'Onde trabalha a VirtusPromPT?', a: 'A VirtusPromPT trabalha remotamente e também presencialmente, em Portugal.' },
+        { q: 'Como posso pedir uma proposta?', a: 'Pode pedir uma proposta pelo formulário de contacto desta página ou agendar uma conversa de 30 minutos. Ajuda partilhar uma breve descrição do projeto, os objetivos e o prazo pretendido. Respondemos normalmente em 24–48h úteis.' },
       ],
     },
     contact: {
       eyebrow: 'Contacto',
       title: 'Tem um projeto ou um desafio técnico?',
       lede: 'Dúvida, proposta ou parceria: conte-nos o que precisa. Respondemos normalmente em 24–48h úteis.',
+      emailLabel: 'Email',
       meetingLabel: 'Reunião',
       meetingLink: 'Agendar 30 min no Calendly ↗',
       whereLabel: 'Onde',
@@ -120,7 +133,7 @@ export const strings = {
         submit: 'Enviar mensagem',
       },
     },
-    footer: { privacy: 'Privacidade' },
+    footer: { privacy: 'Privacidade', nipc: 'NIPC', office: 'Sede' },
     thanks: {
       title: 'Mensagem enviada',
       text: 'Obrigado pelo contacto. Respondemos normalmente em 24–48h úteis.',
@@ -131,11 +144,19 @@ export const strings = {
 
   en: {
     meta: {
-      title: 'VirtusPromPT | App and Software Development in Portugal',
+      title: 'Custom App and Software Development in Portugal | VirtusPromPT',
       description:
         'Custom app and software development for mobile, desktop and web, and technology consulting for businesses.',
     },
-    nav: { services: 'Services', process: 'Process', about: 'About us', faq: 'FAQ', contact: 'Contact', main: 'Main' },
+    nav: { services: 'Services', process: 'Process', about: 'About us', cases: 'Clients', faq: 'FAQ', contact: 'Contact', main: 'Main', menu: 'Menu' },
+    page: {
+      home: 'Home',
+      related: 'You might also like',
+      faq: 'Frequently asked questions',
+      updated: 'Updated',
+      learnMore: 'Learn more',
+      draft: 'Draft: the fields highlighted in yellow still need filling in. Until they are, this page is not indexed and nothing on the site links to it.',
+    },
     cta: { meeting: 'Book a meeting', call: 'Book a 30-min call', proposal: 'Request a proposal' },
     theme: { toDark: 'Switch to dark mode', toLight: 'Switch to light mode' },
     langLabel: 'Language',
@@ -156,23 +177,26 @@ export const strings = {
     },
     services: {
       eyebrow: 'Services',
-      title: 'From technical decisions to apps in production',
+      title: 'App development, technology consulting and technical interviews',
       lede: 'Three ways to work together. Start with one and move to another when it makes sense.',
       items: [
         {
           code: 'DEV',
-          title: 'Software development',
+          page: 'custom-software',
+          title: 'Custom app and software development',
           text: 'Custom apps and digital products, from idea to implementation, with technical rigour and a product mindset.',
           bullets: ['Mobile apps', 'Desktop apps', 'Web apps and platforms', 'Integrations and team augmentation'],
         },
         {
           code: 'CON',
+          page: 'technology-consulting',
           title: 'Technology consulting',
           text: 'Support with decisions before and during development, so your technology investment has a real business impact.',
           bullets: ['Requirements analysis and idea validation', 'Architecture and technology choices', 'Audits of existing apps', 'Technical roadmap'],
         },
         {
           code: 'REC',
+          page: 'technical-interviews',
           title: 'Technical hiring and mentoring',
           text: 'Structured technical interviews to assess candidates, and mentoring for people growing in your team.',
           bullets: ['Technical interviews', 'Assessment frameworks', 'One-to-one mentoring', 'Guided code reviews'],
@@ -184,7 +208,7 @@ export const strings = {
       title: 'Apps for mobile, desktop and web',
       lede: 'We build apps and software solutions for the platforms where your business needs to be.',
       items: [
-        { tag: 'mobile', title: 'Mobile apps', text: 'Apps for phones and tablets, designed for the people who use them every day.' },
+        { tag: 'mobile', page: 'mobile-apps', title: 'Mobile apps', text: 'Apps for phones and tablets, designed for the people who use them every day.' },
         { tag: 'desktop', title: 'Desktop apps', text: 'Software for computers, from internal tools to products for your customers.' },
         { tag: 'web', title: 'Web apps and platforms', text: 'Portals, platforms and web solutions that grow with your business.' },
       ],
@@ -203,7 +227,7 @@ export const strings = {
     about: {
       eyebrow: 'About us',
       title: 'A hands-on technical partner who speaks the language of business',
-      role: 'Managing partner',
+      role: 'Founder and CEO',
       photoAlt: 'Portrait of Rodrigo Fernandes',
       paragraphs: [
         'At VirtusPromPT we help businesses turn ideas into solid digital solutions. We combine deep technical knowledge with a practical approach, delivering quickly without compromising the structure you need to grow.',
@@ -216,18 +240,20 @@ export const strings = {
       ledeBefore: 'Can’t find your question? ',
       ledeLink: 'Send us a message',
       items: [
-        { q: 'What services do you offer?', a: 'App development, custom software and technology consulting for businesses, from defining the solution to implementation, with a focus on robustness, scalability and business impact.' },
-        { q: 'Do you only build mobile apps?', a: 'No. We build apps and software solutions for mobile, desktop and web, and we also help with architecture and product.' },
-        { q: 'How does the process work?', a: 'We start with a conversation, define the approach, scope and delivery plan, and then work closely with you, with clear communication and phased deliveries.' },
-        { q: 'Do you work with companies of any size?', a: 'Yes. We adapt our approach to each company’s context, budget and technical maturity, from early-stage businesses to established companies.' },
-        { q: 'Do you offer consulting before development?', a: 'Yes, and it’s often the best place to start: requirements, idea validation, architecture, technology and roadmap, before any code is written.' },
-        { q: 'How can I request a proposal?', a: 'Use the form below or book a call. It helps to share a short description of the project, your goals and your intended timeline.' },
+        { q: 'What services does VirtusPromPT offer?', a: 'VirtusPromPT offers three services: custom app and software development, technology consulting, and technical interviews and mentoring. We support each business from defining the solution through to implementation, with a focus on robustness, scalability and business impact.' },
+        { q: 'Does VirtusPromPT only build mobile apps?', a: 'No. VirtusPromPT builds apps and software for mobile, desktop and web, and also helps with architecture and product.' },
+        { q: 'How does the process work?', a: 'The process has four steps: a first conversation to understand your context and goals; defining the approach, scope and delivery plan; development, with phased deliveries you can see and test; and ongoing support after delivery, to evolve and maintain the software.' },
+        { q: 'Do you work with companies of any size?', a: 'Yes. VirtusPromPT works with companies of every size, from early-stage businesses to established companies, and adapts its approach to each one’s context, budget and technical maturity.' },
+        { q: 'Do you offer consulting before development?', a: 'Yes, and it’s often the best place to start. Before any code is written, technology consulting settles the requirements, validates the idea and chooses the architecture, technology and roadmap.' },
+        { q: 'Where does VirtusPromPT work?', a: 'VirtusPromPT works remotely, and in person in Portugal.' },
+        { q: 'How can I request a proposal?', a: 'Use the contact form on this page or book a 30-minute call. It helps to share a short description of the project, your goals and your intended timeline. We usually reply within 1–2 business days.' },
       ],
     },
     contact: {
       eyebrow: 'Contact',
       title: 'Have a project or a technical challenge?',
       lede: 'A question, a proposal or a partnership: tell us what you need. We usually reply within 1–2 business days.',
+      emailLabel: 'Email',
       meetingLabel: 'Meeting',
       meetingLink: 'Book 30 min on Calendly ↗',
       whereLabel: 'Where',
@@ -246,7 +272,7 @@ export const strings = {
         submit: 'Send message',
       },
     },
-    footer: { privacy: 'Privacy' },
+    footer: { privacy: 'Privacy', nipc: 'Company no. (NIPC)', office: 'Registered office' },
     thanks: {
       title: 'Message sent',
       text: 'Thank you for getting in touch. We usually reply within 1–2 business days.',

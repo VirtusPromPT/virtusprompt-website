@@ -1,5 +1,4 @@
 ---
-// DRAFT privacy policy. Review it (ideally with your accountant or a lawyer) before going live.
 import Base from '../layouts/Base.astro';
 import { SITE } from '../config';
 ---
@@ -10,7 +9,7 @@ import { SITE } from '../config';
     <p class="mono updated">Última atualização: novembro de 2026</p>
     <div class="prose">
       <h2>Quem é responsável pelos dados</h2>
-      <p>{SITE.legalName} ({SITE.brand}), com sede em Portugal. Para qualquer questão sobre os seus dados, escreva para <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+      <p>{SITE.legalName} ({SITE.brand}), NIPC {SITE.nipc}, com sede em {SITE.registeredOffice}, Portugal. Para qualquer questão sobre os seus dados, escreva para <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
 
       <h2>Que dados recolhemos</h2>
       <ul>

@@ -13,6 +13,17 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "DENY"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    # Report-only for now: the browser logs violations in the console but blocks nothing.
+    # After a couple of weeks with no unexpected violations, rename the key to Content-Security-Policy to enforce it.
+    # 'unsafe-inline' scripts: Astro inlines small scripts and the theme script runs before paint.
+    # frame-src app.netlify.com: the Netlify drawer/badge that Netlify adds to the pages.
+    Content-Security-Policy-Report-Only = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://app.netlify.com; form-action 'self'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+
+# Static images keep the same file name when they change, so cache them for a week rather than forever
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
 
 # Long cache for fingerprinted build assets
 [[headers]]
