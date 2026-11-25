@@ -45,6 +45,13 @@ const homeLang = new URL(ROUTES.home[lang], SITE.url).href;
 const orgId = `${home}#organization`;
 const personId = `${home}#person`;
 const sameAs = SITE.profiles.map((p) => p.url);
+// 'Street 1, 1234-567 Locality' -> schema.org PostalAddress (falls back to the whole string as the street).
+function postalAddress(office: string) {
+  const m = office.match(/^(.*),\s*(\d{4}-\d{3})\s+(.+)$/);
+  return m
+    ? { '@type': 'PostalAddress', streetAddress: m[1], postalCode: m[2], addressLocality: m[3], addressCountry: 'PT' }
+    : { '@type': 'PostalAddress', streetAddress: office, addressCountry: 'PT' };
+}
 const breadcrumb =
   route === 'home'
     ? []
@@ -78,10 +85,11 @@ const jsonLd = {
         availableLanguage: ['pt-PT', 'en'],
       },
       areaServed: { '@type': 'Country', name: 'Portugal' },
+      founder: { '@id': personId },
       employee: { '@id': personId },
       ...(SITE.nipc ? { taxID: SITE.nipc } : {}),
       ...(SITE.registeredOffice
-        ? { address: { '@type': 'PostalAddress', streetAddress: SITE.registeredOffice, addressCountry: 'PT' } }
+        ? { address: postalAddress(SITE.registeredOffice) }
         : {}),
       ...(sameAs.length ? { sameAs } : {}),
       hasOfferCatalog: {

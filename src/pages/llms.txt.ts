@@ -15,7 +15,7 @@ export const GET: APIRoute = () => {
     '',
     `> ${en.meta.description}`,
     '',
-    `${SITE.brand} is the brand of ${SITE.legalName}, a software development and technology consulting company in Portugal. ${SITE.person} is the managing partner. The site is in Portuguese (default) and English.`,
+    `${SITE.brand} is the brand of ${SITE.legalName}, a software development and technology consulting company in Portugal. ${SITE.person} is the founder and CEO. The site is in Portuguese (default) and English.`,
     '',
     `- Contact: ${SITE.email}`,
     `- Book a call: ${SITE.calendly}`,

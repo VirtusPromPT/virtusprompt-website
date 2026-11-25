@@ -503,7 +503,7 @@ export const PAGES: Record<PageId, PageDef> = {
           ],
         },
         {
-          h2: 'Rodrigo Fernandes, sócio-gerente',
+          h2: 'Rodrigo Fernandes, fundador e CEO',
           p: ['[TODO: percurso profissional: anos de experiência, empresas e projetos relevantes, especialidade técnica]'],
           list: [
             'Tecnologias principais: [TODO]',
@@ -539,7 +539,7 @@ export const PAGES: Record<PageId, PageDef> = {
           ],
         },
         {
-          h2: 'Rodrigo Fernandes, managing partner',
+          h2: 'Rodrigo Fernandes, founder and CEO',
           p: ['[TODO: career: years of experience, relevant companies and projects, technical speciality]'],
           list: [
             'Main technologies: [TODO]',

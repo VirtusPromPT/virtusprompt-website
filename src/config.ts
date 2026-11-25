@@ -8,15 +8,17 @@ export const SITE = {
   calendly: 'https://calendly.com/rodrigo-fernandes-virtusprompt/30min',
   email: 'contact@virtusprompt.com',
   simvou: 'https://simvou.pt/?utm_source=virtusprompt&utm_medium=referral',
-  // Managing partner, shown in the structured data as an `employee` of the company.
-  // If Rodrigo also founded the company, change `employee` to `founder` in src/layouts/Base.astro.
+  // Founder, managing partner and CEO (shown as `founder` in the structured data).
   person: 'Rodrigo Fernandes',
   // Company identification shown in the footer and in the structured data.
   // Leave a value empty ('') and it is simply not shown.
-  nipc: '', // e.g. '512345678'
-  registeredOffice: '', // e.g. 'Rua Exemplo 1, 1000-001 Lisboa'
+  nipc: '519208234',
+  registeredOffice: 'Av. 25 de Abril 121, 2865-406 Pinhal de Frades',
   // Public profiles of the company (LinkedIn, GitHub, ...). Only list profiles you control and keep up to date.
-  profiles: [] as { label: string; url: string }[],
+  profiles: [
+    { label: 'LinkedIn', url: 'https://www.linkedin.com/company/111044951' },
+    { label: 'Instagram', url: 'https://www.instagram.com/virtusprompt' },
+  ] as { label: string; url: string }[],
 };
 
 export type Lang = 'pt' | 'en';

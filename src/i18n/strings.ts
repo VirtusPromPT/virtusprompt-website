@@ -88,7 +88,7 @@ export const strings = {
     about: {
       eyebrow: 'Quem somos',
       title: 'Um parceiro técnico próximo, que fala a língua do negócio',
-      role: 'Sócio-gerente',
+      role: 'Fundador e CEO',
       photoAlt: 'Retrato de Rodrigo Fernandes',
       paragraphs: [
         'Na VirtusPromPT ajudamos empresas a transformar ideias em soluções digitais sólidas. Juntamos conhecimento técnico profundo a uma abordagem prática, para entregar depressa sem comprometer a estrutura que permite crescer.',
@@ -227,7 +227,7 @@ export const strings = {
     about: {
       eyebrow: 'About us',
       title: 'A hands-on technical partner who speaks the language of business',
-      role: 'Managing partner',
+      role: 'Founder and CEO',
       photoAlt: 'Portrait of Rodrigo Fernandes',
       paragraphs: [
         'At VirtusPromPT we help businesses turn ideas into solid digital solutions. We combine deep technical knowledge with a practical approach, delivering quickly without compromising the structure you need to grow.',
