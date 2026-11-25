@@ -13,9 +13,9 @@ const home = ROUTES.home[lang];
     <a class="brand" href={home} style="color:var(--fg); letter-spacing:0; text-transform:none; font-size:1rem"><i class="vp" aria-hidden="true"></i>{SITE.brand}</a>
     <nav aria-label="Footer">
       <a href={`${home}#services`}>{t.nav.services}</a>
-      <a href={`${home}#about`}>{t.nav.about}</a>
+      <a href={isPublished('about') ? ROUTES.about[lang] : `${home}#about`}>{t.nav.about}</a>
       <a href={`${home}#faq`}>{t.nav.faq}</a>
-      {PAGE_IDS.filter((id) => id !== 'about' && isPublished(id)).map((id) => <a href={ROUTES[id][lang]}>{PAGES[id].kind === 'guide' ? PAGES[id][lang].h1 : PAGES[id][lang].eyebrow}</a>)}
+      {PAGE_IDS.filter((id) => PAGES[id].kind === 'service' && isPublished(id)).map((id) => <a href={ROUTES[id][lang]}>{PAGES[id][lang].eyebrow}</a>)}
       <a href={ROUTES.privacy[lang]}>{t.footer.privacy}</a>
     </nav>
     <p class="legal">

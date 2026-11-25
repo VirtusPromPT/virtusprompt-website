@@ -1,6 +1,6 @@
 // Content for the inner pages: services, about, case studies and guides, in Portuguese (pt) and English (en).
 //
-// Anything written as [TODO: ...] is a fact only you can fill in (prices, stack, client results...).
+// Anything written as [TODO: ...] is a fact still to be filled in.
 // A page that still contains a TODO is a draft: it is built so you can preview it, but it is
 // noindex, left out of the sitemap, llms.txt and every menu or link. Remove its last TODO and it goes live.
 
@@ -45,24 +45,6 @@ export interface PageDef {
   en: Copy;
 }
 
-const caseStudy = (pt: boolean, name: string): Section => ({
-  h2: name,
-  p: pt
-    ? [
-        `Desafio: [TODO: o problema de partida de ${name}]`,
-        '[TODO: o que fizemos: âmbito, equipa e duração]',
-        '[TODO: o resultado, de preferência com números]',
-      ]
-    : [
-        `Challenge: [TODO: the problem ${name} came to us with]`,
-        '[TODO: what we did: scope, team and duration]',
-        '[TODO: the outcome, ideally with numbers]',
-      ],
-  list: pt
-    ? ['Serviço: [TODO: desenvolvimento, consultoria ou entrevistas técnicas]', 'Tecnologias: [TODO]']
-    : ['Service: [TODO: development, consulting or technical interviews]', 'Technologies: [TODO]'],
-});
-
 export const PAGES: Record<PageId, PageDef> = {
   'technical-interviews': {
     kind: 'service',
@@ -95,8 +77,8 @@ export const PAGES: Record<PageId, PageDef> = {
           list: [
             'Alinhamos o perfil: a função, o nível de senioridade e as tecnologias que importam.',
             'Preparamos a grelha de avaliação, com critérios definidos antes da entrevista e iguais para todos os candidatos.',
-            'Conduzimos a entrevista técnica. [TODO: formato e duração, por exemplo 60 a 90 minutos por vídeo, com exercício prático ou revisão de código]',
-            'Entregamos a avaliação. [TODO: o que o cliente recebe no fim, por exemplo um relatório com pontuação por critério e uma recomendação]',
+            'Conduzimos a entrevista técnica: 60 a 90 minutos por vídeo, com um exercício prático ou uma revisão de código.',
+            'Em até 48 horas, entregamos um relatório completo sobre as competências técnicas e comportamentais do candidato.',
           ],
         },
         {
@@ -104,9 +86,10 @@ export const PAGES: Record<PageId, PageDef> = {
           p: ['Cada grelha de avaliação é adaptada à função, mas cobre normalmente:'],
           list: [
             'Fundamentos e resolução de problemas.',
-            'Domínio das tecnologias da função. [TODO: tecnologias que avaliam, por exemplo Android, iOS, web ou backend]',
+            'Domínio das tecnologias da função, com especial experiência em desenvolvimento mobile (Android e Compose Multiplatform) e web (JavaScript).',
             'Qualidade de código e capacidade de rever o código de outros.',
             'Comunicação e capacidade de explicar decisões técnicas.',
+            'Competências comportamentais, como o trabalho em equipa e a forma de lidar com feedback.',
           ],
         },
         {
@@ -117,9 +100,9 @@ export const PAGES: Record<PageId, PageDef> = {
         },
       ],
       faq: [
-        { q: 'Quanto custa uma entrevista técnica?', a: 'O preço de uma entrevista técnica da VirtusPromPT é [TODO: preço por entrevista ou por pacote, e se inclui a preparação da grelha].' },
-        { q: 'Em quanto tempo recebo a avaliação do candidato?', a: '[TODO: prazo habitual entre a entrevista e a entrega da avaliação].' },
-        { q: 'Em que línguas são feitas as entrevistas técnicas?', a: '[TODO: línguas, por exemplo português e inglês].' },
+        { q: 'Quanto custa uma entrevista técnica?', a: 'O preço depende do número de entrevistas e do perfil a avaliar. Cada pedido tem um orçamento próprio: entre em contacto e respondemos normalmente em 24–48h úteis.' },
+        { q: 'Em quanto tempo recebo a avaliação do candidato?', a: 'O relatório de avaliação é entregue em até 48 horas depois da entrevista.' },
+        { q: 'Em que línguas são feitas as entrevistas técnicas?', a: 'As entrevistas técnicas são feitas em português ou em inglês.' },
       ],
     },
     en: {
@@ -148,8 +131,8 @@ export const PAGES: Record<PageId, PageDef> = {
           list: [
             'We agree the profile: the role, the seniority and the technologies that matter.',
             'We prepare the assessment framework, with criteria set before the interview and the same for every candidate.',
-            'We run the technical interview. [TODO: format and length, for example 60 to 90 minutes by video, with a practical exercise or code review]',
-            'We hand over the assessment. [TODO: what the client receives, for example a report with a score per criterion and a recommendation]',
+            'We run the technical interview: 60 to 90 minutes by video, with a practical exercise or a code review.',
+            'Within 48 hours, we deliver a full report on the candidate’s technical and behavioural skills.',
           ],
         },
         {
@@ -157,9 +140,10 @@ export const PAGES: Record<PageId, PageDef> = {
           p: ['Each framework is tailored to the role, but usually covers:'],
           list: [
             'Fundamentals and problem solving.',
-            'Command of the role’s technologies. [TODO: technologies you assess, for example Android, iOS, web or backend]',
+            'Command of the role’s technologies, with particular experience in mobile (Android and Compose Multiplatform) and web (JavaScript) development.',
             'Code quality and the ability to review other people’s code.',
             'Communication, and the ability to explain technical decisions.',
+            'Behavioural skills, such as teamwork and how the candidate handles feedback.',
           ],
         },
         {
@@ -170,9 +154,9 @@ export const PAGES: Record<PageId, PageDef> = {
         },
       ],
       faq: [
-        { q: 'How much does a technical interview cost?', a: 'A VirtusPromPT technical interview costs [TODO: price per interview or per package, and whether it includes preparing the framework].' },
-        { q: 'How soon do I get the candidate assessment?', a: '[TODO: usual time between the interview and the assessment].' },
-        { q: 'Which languages are the technical interviews held in?', a: '[TODO: languages, for example Portuguese and English].' },
+        { q: 'How much does a technical interview cost?', a: 'The price depends on the number of interviews and the profile being assessed. Every request gets its own quote: get in touch and we usually reply within 1–2 business days.' },
+        { q: 'How soon do I get the candidate assessment?', a: 'The assessment report is delivered within 48 hours of the interview.' },
+        { q: 'Which languages are the technical interviews held in?', a: 'Technical interviews are held in Portuguese or English.' },
       ],
     },
   },
@@ -201,7 +185,10 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Tecnologias',
-          p: ['[TODO: abordagem e tecnologias: nativo (por exemplo Kotlin e Swift) e/ou multiplataforma (por exemplo Kotlin Multiplatform ou Flutter), e quando recomendam cada uma]'],
+          p: [
+            'A nossa especialidade é o desenvolvimento Android nativo com Jetpack Compose e o desenvolvimento multiplataforma com Compose Multiplatform, que partilha o código entre Android e iOS.',
+            'Escolhemos a tecnologia em função de cada projeto. Quando um projeto pede outra stack, reforçamos a equipa com especialistas.',
+          ],
         },
         {
           h2: 'Do primeiro esboço à loja de aplicações',
@@ -222,10 +209,10 @@ export const PAGES: Record<PageId, PageDef> = {
         },
       ],
       faq: [
-        { q: 'Quanto custa desenvolver uma app mobile?', a: 'Depende sobretudo do âmbito. Na VirtusPromPT, uma app mobile custa normalmente entre [TODO: intervalo de preços típico].' },
-        { q: 'Quanto tempo demora a desenvolver uma app?', a: '[TODO: prazo típico, por exemplo de uma primeira versão até à publicação].' },
-        { q: 'O código da app fica a ser meu?', a: '[TODO: confirmar se o código e a propriedade intelectual passam para o cliente no fim do projeto].' },
-        { q: 'Fazem manutenção depois do lançamento da app?', a: 'Sim. Depois do lançamento continuamos disponíveis para evoluir e manter a app, e para passar conhecimento à sua equipa. [TODO: modelo de manutenção, por exemplo contrato mensal ou por horas]' },
+        { q: 'Quanto custa desenvolver uma app mobile?', a: 'Depende do âmbito: plataformas, funcionalidades, integrações e design. Cada projeto tem um orçamento próprio, preparado depois de uma primeira conversa. Entre em contacto para pedir uma proposta.' },
+        { q: 'Quanto tempo demora a desenvolver uma app?', a: 'Depende do âmbito de cada projeto. O prazo fica definido no plano de execução, antes de começar o desenvolvimento, com entregas faseadas que pode testar pelo caminho.' },
+        { q: 'O código da app fica a ser meu?', a: 'Quem fica com o código e a propriedade intelectual é acordado na proposta, de acordo com as necessidades de cada cliente.' },
+        { q: 'Fazem manutenção depois do lançamento da app?', a: 'Sim. Depois do lançamento continuamos disponíveis para evoluir e manter a app, e para passar conhecimento à sua equipa. Em projetos mais pequenos, a manutenção funciona com uma avença mensal; em projetos maiores, por tempo e materiais.' },
       ],
     },
     en: {
@@ -247,7 +234,10 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Technologies',
-          p: ['[TODO: approach and technologies: native (for example Kotlin and Swift) and/or cross-platform (for example Kotlin Multiplatform or Flutter), and when you recommend each]'],
+          p: [
+            'We specialise in native Android development with Jetpack Compose, and cross-platform development with Compose Multiplatform, which shares code between Android and iOS.',
+            'We choose the technology to suit each project. When a project needs a different stack, we bring in specialists.',
+          ],
         },
         {
           h2: 'From first sketch to the app stores',
@@ -268,10 +258,10 @@ export const PAGES: Record<PageId, PageDef> = {
         },
       ],
       faq: [
-        { q: 'How much does it cost to build a mobile app?', a: 'It mostly depends on scope. At VirtusPromPT a mobile app usually costs between [TODO: typical price range].' },
-        { q: 'How long does it take to build an app?', a: '[TODO: typical timeline, for example from first version to publishing].' },
-        { q: 'Do I own the app’s code?', a: '[TODO: confirm whether the code and intellectual property pass to the client at the end of the project].' },
-        { q: 'Do you maintain the app after launch?', a: 'Yes. After launch we stay available to evolve and maintain the app, and to hand knowledge over to your team. [TODO: maintenance model, for example monthly retainer or hourly]' },
+        { q: 'How much does it cost to build a mobile app?', a: 'It depends on scope: platforms, features, integrations and design. Every project gets its own quote, prepared after a first conversation. Get in touch to request a proposal.' },
+        { q: 'How long does it take to build an app?', a: 'It depends on the scope of each project. The timeline is set in the delivery plan before development starts, with phased deliveries you can test along the way.' },
+        { q: 'Do I own the app’s code?', a: 'Who owns the code and intellectual property is agreed in the proposal, based on what each client needs.' },
+        { q: 'Do you maintain the app after launch?', a: 'Yes. After launch we stay available to evolve and maintain the app, and to hand knowledge over to your team. For smaller projects, maintenance runs on a monthly retainer; for bigger projects, on time and materials.' },
       ],
     },
   },
@@ -325,13 +315,16 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Tecnologias',
-          p: ['[TODO: linguagens, frameworks e infraestrutura com que trabalham, por exemplo Kotlin, TypeScript, React, .NET, cloud]'],
+          p: [
+            'Não estamos presos a uma tecnologia. A nossa base é o desenvolvimento mobile (Android com Jetpack Compose e Compose Multiplatform) e web (JavaScript e vários frameworks).',
+            'Quando um projeto pede outra stack, reforçamos a equipa com especialistas, para que a tecnologia sirva o projeto e não o contrário.',
+          ],
         },
       ],
       faq: [
-        { q: 'Quanto custa desenvolver software à medida?', a: 'Depende do âmbito. Na VirtusPromPT, um projeto de software à medida custa normalmente entre [TODO: intervalo de preços típico].' },
-        { q: 'Quanto tempo demora um projeto de software à medida?', a: '[TODO: prazo típico de uma primeira versão em produção].' },
-        { q: 'O código do software fica a ser meu?', a: '[TODO: confirmar se o código e a propriedade intelectual passam para o cliente].' },
+        { q: 'Quanto custa desenvolver software à medida?', a: 'Depende do âmbito: processos a cobrir, plataformas, integrações e design. Cada projeto tem um orçamento próprio, preparado depois de uma primeira conversa. Entre em contacto para pedir uma proposta.' },
+        { q: 'Quanto tempo demora um projeto de software à medida?', a: 'Depende do âmbito de cada projeto. O prazo fica definido no plano de execução, antes de começar o desenvolvimento, com entregas faseadas que pode testar pelo caminho.' },
+        { q: 'O código do software fica a ser meu?', a: 'Quem fica com o código e a propriedade intelectual é acordado na proposta, de acordo com as necessidades de cada cliente.' },
         { q: 'Podem continuar um projeto começado por outra equipa?', a: 'Sim. Começamos por uma auditoria ao código e à arquitetura existentes, para perceber o estado do projeto antes de propor como continuar.' },
       ],
     },
@@ -379,13 +372,16 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Technologies',
-          p: ['[TODO: languages, frameworks and infrastructure you work with, for example Kotlin, TypeScript, React, .NET, cloud]'],
+          p: [
+            'We’re not tied to one technology. Our core is mobile development (Android with Jetpack Compose and Compose Multiplatform) and web development (JavaScript and a range of frameworks).',
+            'When a project needs a different stack, we bring in specialists, so the technology serves the project rather than the other way round.',
+          ],
         },
       ],
       faq: [
-        { q: 'How much does custom software development cost?', a: 'It depends on scope. At VirtusPromPT a custom software project usually costs between [TODO: typical price range].' },
-        { q: 'How long does a custom software project take?', a: '[TODO: typical time to a first version in production].' },
-        { q: 'Do I own the software’s code?', a: '[TODO: confirm whether the code and intellectual property pass to the client].' },
+        { q: 'How much does custom software development cost?', a: 'It depends on scope: the processes to cover, platforms, integrations and design. Every project gets its own quote, prepared after a first conversation. Get in touch to request a proposal.' },
+        { q: 'How long does a custom software project take?', a: 'It depends on the scope of each project. The timeline is set in the delivery plan before development starts, with phased deliveries you can test along the way.' },
+        { q: 'Do I own the software’s code?', a: 'Who owns the code and intellectual property is agreed in the proposal, based on what each client needs.' },
         { q: 'Can you take over a project another team started?', a: 'Yes. We start with an audit of the existing code and architecture, to understand where the project stands before proposing how to continue.' },
       ],
     },
@@ -422,7 +418,7 @@ export const PAGES: Record<PageId, PageDef> = {
         {
           h2: 'Como funciona',
           p: [
-            'Começamos com uma conversa para perceber o contexto e os objetivos, e definimos juntos o âmbito da consultoria. [TODO: o que o cliente recebe no fim, por exemplo um documento de arquitetura, um roadmap ou um relatório de auditoria, e a duração típica]',
+            'Começamos com uma conversa para perceber o contexto e os objetivos, e definimos juntos o âmbito da consultoria. O resultado depende do que precisa: um documento de arquitetura, um roadmap técnico, um relatório de auditoria, ou todos. A duração acompanha o âmbito.',
           ],
         },
         {
@@ -433,9 +429,9 @@ export const PAGES: Record<PageId, PageDef> = {
         },
       ],
       faq: [
-        { q: 'Quanto custa a consultoria tecnológica?', a: 'Na VirtusPromPT, a consultoria tecnológica é cobrada [TODO: à hora, ao dia ou por projeto, e valores de referência].' },
+        { q: 'Quanto custa a consultoria tecnológica?', a: 'O preço depende do âmbito. Cada pedido tem um orçamento próprio, preparado depois de uma primeira conversa.' },
         { q: 'Faz sentido pedir consultoria antes de desenvolver?', a: 'Sim, e muitas vezes é o melhor ponto de partida: requisitos, validação de ideias, arquitetura, tecnologia e roadmap ficam definidos antes de escrever código.' },
-        { q: 'Podem auditar uma aplicação desenvolvida por outra empresa?', a: 'Sim. A auditoria avalia a qualidade do código, a arquitetura e os riscos da aplicação, e termina com recomendações concretas. [TODO: formato e duração típica da auditoria]' },
+        { q: 'Podem auditar uma aplicação desenvolvida por outra empresa?', a: 'Sim. A auditoria avalia a qualidade do código, a arquitetura e os riscos da aplicação, e termina com um relatório completo sobre o que está bem e o que deve ser melhorado.' },
       ],
     },
     en: {
@@ -464,7 +460,7 @@ export const PAGES: Record<PageId, PageDef> = {
         {
           h2: 'How it works',
           p: [
-            'We start with a conversation to understand your context and goals, and agree the scope of the work together. [TODO: what the client receives, for example an architecture document, a roadmap or an audit report, and the typical duration]',
+            'We start with a conversation to understand your context and goals, and agree the scope of the work together. The outcome depends on what you need: an architecture document, a technical roadmap, an audit report, or all of them. The duration follows the scope.',
           ],
         },
         {
@@ -475,9 +471,9 @@ export const PAGES: Record<PageId, PageDef> = {
         },
       ],
       faq: [
-        { q: 'How much does technology consulting cost?', a: 'At VirtusPromPT, technology consulting is charged [TODO: hourly, daily or per project, and reference rates].' },
+        { q: 'How much does technology consulting cost?', a: 'The price depends on scope. Every request gets its own quote, prepared after a first conversation.' },
         { q: 'Does it make sense to get consulting before development?', a: 'Yes, and it’s often the best place to start: requirements, idea validation, architecture, technology and roadmap are settled before any code is written.' },
-        { q: 'Can you audit an app built by another company?', a: 'Yes. The audit assesses the app’s code quality, architecture and risks, and ends with concrete recommendations. [TODO: format and typical length of an audit]' },
+        { q: 'Can you audit an app built by another company?', a: 'Yes. The audit assesses the app’s code quality, architecture and risks, and ends with a full report on what works well and what should be improved.' },
       ],
     },
   },
@@ -498,23 +494,27 @@ export const PAGES: Record<PageId, PageDef> = {
         {
           h2: 'A VirtusPromPT',
           p: [
-            'A VirtusPromPT é a marca da Virtuous Prompts, Lda, uma empresa portuguesa de desenvolvimento de software e consultoria tecnológica. [TODO: ano de fundação e cidade da sede]',
+            'A VirtusPromPT é a marca da Virtuous Prompts, Lda, uma empresa portuguesa de desenvolvimento de software e consultoria tecnológica, fundada em 2025 e com sede em Pinhal de Frades.',
             'Trabalhamos lado a lado com cada cliente: primeiro percebemos o problema, depois propomos o que cria valor hoje e daqui a uns anos.',
           ],
         },
         {
           h2: 'Rodrigo Fernandes, fundador e CEO',
-          p: ['[TODO: percurso profissional: anos de experiência, empresas e projetos relevantes, especialidade técnica]'],
+          p: [
+            'Rodrigo Fernandes fundou a VirtusPromPT em 2025, com sete anos de experiência em desenvolvimento mobile e de software. Ao longo desse percurso trabalhou para empresas e organizações como a Appsfactory, a BMW, a New Look, a Faurecia, a Aptoide, o ICNF e o IPMA.',
+            'Principais tecnologias:',
+          ],
           list: [
-            'Tecnologias principais: [TODO]',
-            '[TODO: certificações, palestras ou contribuições open source, se houver]',
-            '[TODO: link para o perfil de LinkedIn e GitHub]',
+            'Desenvolvimento Android com Jetpack Compose.',
+            'Desenvolvimento multiplataforma com Compose Multiplatform.',
+            'Desenvolvimento web com JavaScript e vários frameworks.',
           ],
         },
         {
           h2: 'Como trabalhamos',
           p: [
             'Começamos com uma conversa, definimos a abordagem, o âmbito e o plano de execução, e trabalhamos em proximidade, com comunicação clara e entregas faseadas. Trabalhamos remotamente e presencialmente, em Portugal, e respondemos normalmente em 24–48h úteis.',
+            'Quando um projeto precisa de outras competências, reforçamos a equipa com especialistas.',
           ],
         },
         {
@@ -534,23 +534,27 @@ export const PAGES: Record<PageId, PageDef> = {
         {
           h2: 'VirtusPromPT',
           p: [
-            'VirtusPromPT is the brand of Virtuous Prompts, Lda, a Portuguese software development and technology consulting company. [TODO: year founded and city of the registered office]',
+            'VirtusPromPT is the brand of Virtuous Prompts, Lda, a Portuguese software development and technology consulting company, founded in 2025 and based in Pinhal de Frades.',
             'We work side by side with every client: first we understand the problem, then we propose what creates value today and for years to come.',
           ],
         },
         {
           h2: 'Rodrigo Fernandes, founder and CEO',
-          p: ['[TODO: career: years of experience, relevant companies and projects, technical speciality]'],
+          p: [
+            'Rodrigo Fernandes founded VirtusPromPT in 2025, after seven years in mobile and software development. Along the way Rodrigo has worked for companies and organisations including Appsfactory, BMW, New Look, Faurecia, Aptoide, ICNF and IPMA.',
+            'Main technologies:',
+          ],
           list: [
-            'Main technologies: [TODO]',
-            '[TODO: certifications, talks or open-source contributions, if any]',
-            '[TODO: link to LinkedIn and GitHub profiles]',
+            'Android development with Jetpack Compose.',
+            'Cross-platform development with Compose Multiplatform.',
+            'Web development with JavaScript and a range of frameworks.',
           ],
         },
         {
           h2: 'How we work',
           p: [
             'We start with a conversation, define the approach, scope and delivery plan, and work closely with you, with clear communication and phased deliveries. We work remotely or in person in Portugal, and usually reply within 1–2 business days.',
+            'When a project needs other skills, we bring in specialists.',
           ],
         },
         {
@@ -563,57 +567,75 @@ export const PAGES: Record<PageId, PageDef> = {
 
   'case-studies': {
     kind: 'cases',
-    slug: { pt: 'casos-de-estudo', en: 'case-studies' },
+    slug: { pt: 'clientes', en: 'clients' },
     related: ['custom-software', 'mobile-apps', 'about'],
     updated: '2026-11-25',
     pt: {
-      eyebrow: 'Casos de estudo',
-      title: 'Casos de Estudo: Projetos de Software e Apps',
+      eyebrow: 'Clientes e parceiros',
+      title: 'Clientes, Parceiros e Projetos',
       description:
-        'Projetos de desenvolvimento de software, apps e consultoria tecnológica da VirtusPromPT, incluindo o Sim, vou, o nosso produto de convites digitais.',
-      h1: 'Projetos que desenvolvemos',
-      lede: 'Alguns dos projetos em que trabalhámos: o problema de partida, o que fizemos e o resultado.',
+        'Clientes e parceiros da VirtusPromPT, como a Appning by Forvia, a We Are Meta e a Custo Marginal, e o Sim, vou, o nosso produto de convites digitais.',
+      h1: 'Clientes, parceiros e projetos',
+      lede: 'Alguns dos clientes e parceiros com quem trabalhamos, e o nosso produto próprio.',
       sections: [
         {
           h2: 'Sim, vou: convites digitais com confirmação de presenças',
           p: [
             'O Sim, vou é um produto próprio da VirtusPromPT: convites digitais com confirmação de presenças, para casamentos, batizados e festas.',
-            'Desafio: [TODO: o problema que o Sim, vou resolve para quem organiza um evento]',
-            '[TODO: o que fizemos: design, desenvolvimento, gestão de confirmações, envio de convites]',
-            '[TODO: o resultado, por exemplo data de lançamento, eventos criados ou convidados]',
+            'Quem organiza o evento envia um convite digital, e os convidados confirmam a presença online.',
           ],
-          list: ['Tecnologias: [TODO]'],
+          list: ['Tipo: produto próprio'],
           link: { label: 'simvou.pt', href: 'https://simvou.pt/?utm_source=virtusprompt&utm_medium=referral' },
         },
-        caseStudy(true, 'Appning by Forvia'),
-        caseStudy(true, 'Mindera'),
-        caseStudy(true, 'We Are Meta'),
-        caseStudy(true, 'Custo Marginal'),
+        {
+          h2: 'Appning by Forvia: uma app de media para automóveis',
+          p: ['A Appning by Forvia pediu-nos apoio no desenvolvimento de uma aplicação de media baseada em templates, para automóveis.'],
+          list: ['Serviço: desenvolvimento de software'],
+        },
+        {
+          h2: 'We Are Meta e Mindera',
+          p: ['Trabalhamos com a We Are Meta em projetos para a Mindera, cliente da We Are Meta, integrados na equipa de desenvolvimento.'],
+          list: ['Serviço: reforço de equipas'],
+        },
+        {
+          h2: 'Custo Marginal: app mobile multiplataforma e automação de processos',
+          p: ['A Custo Marginal é cliente e parceira da VirtusPromPT. Desenvolvemos para a Custo Marginal uma aplicação mobile multiplataforma, e estamos a ajudar a automatizar alguns dos seus processos internos.'],
+          list: ['Serviços: desenvolvimento de aplicações mobile e software à medida'],
+        },
       ],
     },
     en: {
-      eyebrow: 'Case studies',
-      title: 'Case Studies: Software and App Projects',
+      eyebrow: 'Clients and partners',
+      title: 'Clients, Partners and Projects',
       description:
-        'Software development, app and technology consulting projects by VirtusPromPT, including Sim, vou, our digital invitations product.',
-      h1: 'Projects we’ve built',
-      lede: 'Some of the projects we’ve worked on: the starting problem, what we did and the outcome.',
+        'VirtusPromPT’s clients and partners, such as Appning by Forvia, We Are Meta and Custo Marginal, and Sim, vou, our digital invitations product.',
+      h1: 'Clients, partners and projects',
+      lede: 'Some of the clients and partners we work with, and our own product.',
       sections: [
         {
           h2: 'Sim, vou: digital invitations with RSVPs',
           p: [
             'Sim, vou is VirtusPromPT’s own product: digital invitations with RSVPs, for weddings, baptisms and parties.',
-            'Challenge: [TODO: the problem Sim, vou solves for people organising an event]',
-            '[TODO: what we did: design, development, RSVP management, sending invitations]',
-            '[TODO: the outcome, for example launch date, events created or guests]',
+            'The host sends a digital invitation, and guests confirm online whether they’re coming.',
           ],
-          list: ['Technologies: [TODO]'],
+          list: ['Type: our own product'],
           link: { label: 'simvou.pt', href: 'https://simvou.pt/?utm_source=virtusprompt&utm_medium=referral' },
         },
-        caseStudy(false, 'Appning by Forvia'),
-        caseStudy(false, 'Mindera'),
-        caseStudy(false, 'We Are Meta'),
-        caseStudy(false, 'Custo Marginal'),
+        {
+          h2: 'Appning by Forvia: a media app for cars',
+          p: ['Appning by Forvia asked us to help develop a template-based media app for cars.'],
+          list: ['Service: software development'],
+        },
+        {
+          h2: 'We Are Meta and Mindera',
+          p: ['We work with We Are Meta on projects for Mindera, one of We Are Meta’s clients, as part of the development team.'],
+          list: ['Service: team augmentation'],
+        },
+        {
+          h2: 'Custo Marginal: a cross-platform mobile app and process automation',
+          p: ['Custo Marginal is both a client and a partner of VirtusPromPT. We built a cross-platform mobile app for Custo Marginal, and are helping automate some of its internal processes.'],
+          list: ['Services: mobile app development and custom software'],
+        },
       ],
     },
   },
@@ -627,14 +649,14 @@ export const PAGES: Record<PageId, PageDef> = {
       eyebrow: 'Guia',
       title: 'Quanto Custa Desenvolver uma App em Portugal?',
       description:
-        'O que determina o custo de desenvolver uma app em Portugal: plataformas, funcionalidades, design, integrações e manutenção, com intervalos de preço indicativos.',
+        'O que determina o custo de desenvolver uma app em Portugal: plataformas, funcionalidades, design, integrações e manutenção, e como reduzir o custo sem perder qualidade.',
       h1: 'Quanto custa desenvolver uma app em Portugal?',
       lede: 'Não há um preço único: o custo de uma app depende sobretudo do âmbito. Este guia explica o que pesa no orçamento e como reduzir o risco antes de investir.',
       sections: [
         {
           h2: 'Resposta curta',
           p: [
-            'Desenvolver uma app em Portugal custa entre [TODO: valor] para uma app simples e [TODO: valor] ou mais para uma app com várias integrações e uma área de administração. [TODO: confirmar que estes são os intervalos com que a VirtusPromPT trabalha]',
+            'Não há um preço de tabela: o custo de uma app depende do âmbito, e duas apps parecidas à primeira vista podem ter orçamentos muito diferentes. O que mais pesa são as plataformas, o número e a complexidade das funcionalidades, as integrações e o design. A forma mais rápida de ter um valor realista é definir o âmbito e pedir um orçamento.',
           ],
         },
         {
@@ -654,7 +676,7 @@ export const PAGES: Record<PageId, PageDef> = {
           list: [
             'Contas de programador: a Apple cobra uma taxa anual e a Google uma taxa única de registo.',
             'Alojamento do backend e serviços de terceiros, como envio de emails, notificações ou mapas.',
-            'Manutenção: atualizações para novas versões do iOS e do Android, correções e pequenas melhorias. [TODO: valor ou percentagem anual de manutenção que recomendam]',
+            'Manutenção: atualizações para novas versões do iOS e do Android, correções e pequenas melhorias. Na VirtusPromPT, a manutenção de projetos mais pequenos funciona com uma avença mensal; a de projetos maiores, por tempo e materiais.',
           ],
         },
         {
@@ -678,14 +700,14 @@ export const PAGES: Record<PageId, PageDef> = {
       eyebrow: 'Guide',
       title: 'How Much Does It Cost to Build an App in Portugal?',
       description:
-        'What drives the cost of building an app in Portugal: platforms, features, design, integrations and maintenance, with indicative price ranges.',
+        'What drives the cost of building an app in Portugal: platforms, features, design, integrations and maintenance, and how to lower it without lowering quality.',
       h1: 'How much does it cost to build an app in Portugal?',
       lede: 'There’s no single price: an app’s cost depends mostly on its scope. This guide explains what drives the budget and how to reduce the risk before you invest.',
       sections: [
         {
           h2: 'The short answer',
           p: [
-            'Building an app in Portugal costs between [TODO: amount] for a simple app and [TODO: amount] or more for an app with several integrations and an admin area. [TODO: confirm these are the ranges VirtusPromPT works with]',
+            'There’s no list price: an app’s cost depends on its scope, and two apps that look similar at first can have very different budgets. What weighs most is the platforms, the number and complexity of features, the integrations and the design. The quickest way to a realistic figure is to define the scope and ask for a quote.',
           ],
         },
         {
@@ -705,7 +727,7 @@ export const PAGES: Record<PageId, PageDef> = {
           list: [
             'Developer accounts: Apple charges an annual fee and Google a one-off registration fee.',
             'Backend hosting and third-party services, such as email, notifications or maps.',
-            'Maintenance: updates for new iOS and Android versions, fixes and small improvements. [TODO: yearly maintenance amount or percentage you recommend]',
+            'Maintenance: updates for new iOS and Android versions, fixes and small improvements. At VirtusPromPT, maintenance for smaller projects runs on a monthly retainer, and for bigger projects on time and materials.',
           ],
         },
         {

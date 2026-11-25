@@ -8,7 +8,7 @@ export const strings = {
       description:
         'Desenvolvimento de aplicações e software à medida para mobile, desktop e web, e consultoria tecnológica para empresas.',
     },
-    nav: { services: 'Serviços', process: 'Processo', about: 'Quem somos', cases: 'Casos', faq: 'FAQ', contact: 'Contacto', main: 'Principal', menu: 'Menu' },
+    nav: { services: 'Serviços', process: 'Processo', about: 'Quem somos', cases: 'Clientes', faq: 'FAQ', contact: 'Contacto', main: 'Principal', menu: 'Menu' },
     page: {
       home: 'Início',
       related: 'Também pode interessar',
@@ -148,7 +148,7 @@ export const strings = {
       description:
         'Custom app and software development for mobile, desktop and web, and technology consulting for businesses.',
     },
-    nav: { services: 'Services', process: 'Process', about: 'About us', cases: 'Case studies', faq: 'FAQ', contact: 'Contact', main: 'Main', menu: 'Menu' },
+    nav: { services: 'Services', process: 'Process', about: 'About us', cases: 'Clients', faq: 'FAQ', contact: 'Contact', main: 'Main', menu: 'Menu' },
     page: {
       home: 'Home',
       related: 'You might also like',
