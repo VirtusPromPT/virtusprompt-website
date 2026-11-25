@@ -26,6 +26,67 @@ const pageDesc = description ?? t.meta.description;
 const canonical = new URL(ROUTES[route][lang], SITE.url).href;
 const alt = (l: Lang) => new URL(ROUTES[route][l], SITE.url).href;
 const ogImage = new URL(lang === 'en' ? '/og-en.png' : '/og-pt.png', SITE.url).href;
+const inLanguage = lang === 'en' ? 'en' : 'pt-PT';
+
+// Structured data (schema.org): one linked graph of the company, the website and this page.
+const home = new URL('/', SITE.url).href;
+const orgId = `${home}#organization`;
+const sameAs = SITE.profiles.map((p) => p.url);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': orgId,
+      name: SITE.brand,
+      legalName: SITE.legalName,
+      alternateName: 'Virtuous Prompts',
+      url: home,
+      logo: { '@type': 'ImageObject', url: new URL('/icon-512.png', SITE.url).href, width: 512, height: 512 },
+      description: t.meta.description,
+      email: SITE.email,
+      contactPoint: {
+        '@type': 'ContactPoint',
+        contactType: 'sales',
+        email: SITE.email,
+        availableLanguage: ['pt-PT', 'en'],
+      },
+      areaServed: { '@type': 'Country', name: 'Portugal' },
+      founder: { '@type': 'Person', name: SITE.founder, jobTitle: t.about.role },
+      ...(SITE.nipc ? { taxID: SITE.nipc } : {}),
+      ...(SITE.registeredOffice
+        ? { address: { '@type': 'PostalAddress', streetAddress: SITE.registeredOffice, addressCountry: 'PT' } }
+        : {}),
+      ...(sameAs.length ? { sameAs } : {}),
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: t.services.eyebrow,
+        itemListElement: t.services.items.map((s) => ({
+          '@type': 'Offer',
+          itemOffered: { '@type': 'Service', name: s.title, description: s.text, provider: { '@id': orgId } },
+        })),
+      },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${home}#website`,
+      url: home,
+      name: SITE.brand,
+      inLanguage: ['pt-PT', 'en'],
+      publisher: { '@id': orgId },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonical}#webpage`,
+      url: canonical,
+      name: pageTitle,
+      description: pageDesc,
+      inLanguage,
+      isPartOf: { '@id': `${home}#website` },
+      about: { '@id': orgId },
+    },
+  ],
+};
 ---
 <!doctype html>
 <html lang={lang === 'en' ? 'en' : 'pt-PT'}>
@@ -35,10 +96,14 @@ const ogImage = new URL(lang === 'en' ? '/og-en.png' : '/og-pt.png', SITE.url).h
     <title>{pageTitle}</title>
     <meta name="description" content={pageDesc} />
     {noindex && <meta name="robots" content="noindex" />}
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="pt-PT" href={alt('pt')} />
-    <link rel="alternate" hreflang="en" href={alt('en')} />
-    <link rel="alternate" hreflang="x-default" href={alt('pt')} />
+    {!noindex && (
+      <>
+        <link rel="canonical" href={canonical} />
+        <link rel="alternate" hreflang="pt-PT" href={alt('pt')} />
+        <link rel="alternate" hreflang="en" href={alt('en')} />
+        <link rel="alternate" hreflang="x-default" href={alt('pt')} />
+      </>
+    )}
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
@@ -58,16 +123,7 @@ const ogImage = new URL(lang === 'en' ? '/og-en.png' : '/og-pt.png', SITE.url).h
     <script is:inline>
       try { var t = localStorage.getItem('vp-theme'); if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
     </script>
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'ProfessionalService',
-      name: SITE.brand,
-      legalName: SITE.legalName,
-      url: SITE.url,
-      logo: new URL('/icon-512.png', SITE.url).href,
-      areaServed: 'PT',
-      description: strings.pt.meta.description,
-    })} />
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
     <a class="skip" href="#main">{lang === 'en' ? 'Skip to content' : 'Saltar para o conteúdo'}</a>

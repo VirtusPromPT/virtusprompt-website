@@ -14,6 +14,12 @@
     X-Frame-Options = "DENY"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
+# Static images keep the same file name when they change, so cache them for a week rather than forever
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
 # Long cache for fingerprinted build assets
 [[headers]]
   for = "/_astro/*"

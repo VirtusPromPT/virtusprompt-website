@@ -16,6 +16,12 @@ const home = ROUTES.home[lang];
       <a href={`${home}#faq`}>{t.nav.faq}</a>
       <a href={ROUTES.privacy[lang]}>{t.footer.privacy}</a>
     </nav>
-    <span>© {new Date().getFullYear()} {SITE.legalName}</span>
+    <p class="legal">
+      <span>© {new Date().getFullYear()} {SITE.legalName}</span>
+      {SITE.nipc && <span>{t.footer.nipc} {SITE.nipc}</span>}
+      {SITE.registeredOffice && <span>{t.footer.office}: {SITE.registeredOffice}</span>}
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+      {SITE.profiles.map((p) => <a href={p.url} target="_blank" rel="me noopener">{p.label}</a>)}
+    </p>
   </div>
 </footer>

@@ -162,6 +162,7 @@ const clients = [
       <h2>{t.contact.title}</h2>
       <p class="lede">{t.contact.lede}</p>
       <dl class="cmeta">
+        <div><dt>{t.contact.emailLabel}</dt><dd><a href={`mailto:${SITE.email}`}>{SITE.email}</a></dd></div>
         <div><dt>{t.contact.meetingLabel}</dt><dd><a href={SITE.calendly} target="_blank" rel="noopener">{t.contact.meetingLink}</a></dd></div>
         <div><dt>{t.contact.whereLabel}</dt><dd>{t.contact.where}</dd></div>
       </dl>

@@ -4,7 +4,7 @@
 export const strings = {
   pt: {
     meta: {
-      title: 'VirtusPromPT | Desenvolvimento de Aplicações e Software em Portugal',
+      title: 'Desenvolvimento de Aplicações e Software à Medida | VirtusPromPT',
       description:
         'Desenvolvimento de aplicações e software à medida para mobile, desktop e web, e consultoria tecnológica para empresas.',
     },
@@ -30,12 +30,12 @@ export const strings = {
     },
     services: {
       eyebrow: 'Serviços',
-      title: 'Da decisão técnica à aplicação em produção',
+      title: 'Desenvolvimento de aplicações, consultoria tecnológica e entrevistas técnicas',
       lede: 'Três formas de trabalharmos juntos. Pode começar por uma e passar para outra quando fizer sentido.',
       items: [
         {
           code: 'DEV',
-          title: 'Desenvolvimento de software',
+          title: 'Desenvolvimento de aplicações e software à medida',
           text: 'Aplicações e produtos digitais à medida, da ideia à implementação, com rigor técnico e visão de produto.',
           bullets: ['Aplicações mobile', 'Aplicações desktop', 'Aplicações e plataformas web', 'Integrações e reforço de equipas'],
         },
@@ -102,6 +102,7 @@ export const strings = {
       eyebrow: 'Contacto',
       title: 'Tem um projeto ou um desafio técnico?',
       lede: 'Dúvida, proposta ou parceria: conte-nos o que precisa. Respondemos normalmente em 24–48h úteis.',
+      emailLabel: 'Email',
       meetingLabel: 'Reunião',
       meetingLink: 'Agendar 30 min no Calendly ↗',
       whereLabel: 'Onde',
@@ -120,7 +121,7 @@ export const strings = {
         submit: 'Enviar mensagem',
       },
     },
-    footer: { privacy: 'Privacidade' },
+    footer: { privacy: 'Privacidade', nipc: 'NIPC', office: 'Sede' },
     thanks: {
       title: 'Mensagem enviada',
       text: 'Obrigado pelo contacto. Respondemos normalmente em 24–48h úteis.',
@@ -131,7 +132,7 @@ export const strings = {
 
   en: {
     meta: {
-      title: 'VirtusPromPT | App and Software Development in Portugal',
+      title: 'Custom App and Software Development in Portugal | VirtusPromPT',
       description:
         'Custom app and software development for mobile, desktop and web, and technology consulting for businesses.',
     },
@@ -156,12 +157,12 @@ export const strings = {
     },
     services: {
       eyebrow: 'Services',
-      title: 'From technical decisions to apps in production',
+      title: 'App development, technology consulting and technical interviews',
       lede: 'Three ways to work together. Start with one and move to another when it makes sense.',
       items: [
         {
           code: 'DEV',
-          title: 'Software development',
+          title: 'Custom app and software development',
           text: 'Custom apps and digital products, from idea to implementation, with technical rigour and a product mindset.',
           bullets: ['Mobile apps', 'Desktop apps', 'Web apps and platforms', 'Integrations and team augmentation'],
         },
@@ -228,6 +229,7 @@ export const strings = {
       eyebrow: 'Contact',
       title: 'Have a project or a technical challenge?',
       lede: 'A question, a proposal or a partnership: tell us what you need. We usually reply within 1–2 business days.',
+      emailLabel: 'Email',
       meetingLabel: 'Meeting',
       meetingLink: 'Book 30 min on Calendly ↗',
       whereLabel: 'Where',
@@ -246,7 +248,7 @@ export const strings = {
         submit: 'Send message',
       },
     },
-    footer: { privacy: 'Privacy' },
+    footer: { privacy: 'Privacy', nipc: 'Company no. (NIPC)', office: 'Registered office' },
     thanks: {
       title: 'Message sent',
       text: 'Thank you for getting in touch. We usually reply within 1–2 business days.',
