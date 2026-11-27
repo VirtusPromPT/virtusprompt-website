@@ -9,7 +9,10 @@ export interface Section {
   p?: string[];
   list?: string[];
   ordered?: boolean;
+  /** A link to another site, opened in a new tab. */
   link?: { label: string; href: string };
+  /** A link to another page of this site (by its id), or to the contact form. The link text is that page's heading. */
+  more?: PageId | 'contact';
 }
 
 export interface Copy {
@@ -40,7 +43,8 @@ export interface PageDef {
   kind: PageKind;
   slug: { pt: string; en: string };
   related: PageId[];
-  updated: string; // YYYY-MM-DD, shown on guides and used in the structured data
+  published: string; // YYYY-MM-DD, the day the page first went live. Never changes.
+  updated: string; // YYYY-MM-DD, the last real change to the text. Shown on guides, and used in the sitemap and the structured data.
   pt: Copy;
   en: Copy;
 }
@@ -50,7 +54,8 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'service',
     slug: { pt: 'entrevistas-tecnicas', en: 'technical-interviews' },
     related: ['technology-consulting', 'about'],
-    updated: '2026-11-25',
+    published: '2026-11-25',
+    updated: '2026-11-27',
     pt: {
       eyebrow: 'Recrutamento técnico',
       title: 'Entrevistas Técnicas para Contratar Programadores',
@@ -100,7 +105,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
       ],
       faq: [
-        { q: 'Quanto custa uma entrevista técnica?', a: 'O preço depende do número de entrevistas e do perfil a avaliar. Cada pedido tem um orçamento próprio: entre em contacto e respondemos normalmente em 24–48h úteis.' },
+        { q: 'Quanto custa uma entrevista técnica?', a: 'Uma entrevista técnica custa a partir de cerca de 150 € + IVA, com a grelha de avaliação e o relatório incluídos. O valor final depende do número de entrevistas e do perfil a avaliar: entre em contacto e respondemos normalmente em 24–48h úteis.' },
         { q: 'Em quanto tempo recebo a avaliação do candidato?', a: 'O relatório de avaliação é entregue em até 48 horas depois da entrevista.' },
         { q: 'Em que línguas são feitas as entrevistas técnicas?', a: 'As entrevistas técnicas são feitas em português ou em inglês.' },
       ],
@@ -154,7 +159,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
       ],
       faq: [
-        { q: 'How much does a technical interview cost?', a: 'The price depends on the number of interviews and the profile being assessed. Every request gets its own quote: get in touch and we usually reply within 1–2 business days.' },
+        { q: 'How much does a technical interview cost?', a: 'A technical interview costs from around €150 + VAT, including the assessment framework and the report. The final price depends on the number of interviews and the profile being assessed: get in touch and we usually reply within 1–2 business days.' },
         { q: 'How soon do I get the candidate assessment?', a: 'The assessment report is delivered within 48 hours of the interview.' },
         { q: 'Which languages are the technical interviews held in?', a: 'Technical interviews are held in Portuguese or English.' },
       ],
@@ -165,7 +170,8 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'service',
     slug: { pt: 'desenvolvimento-apps-mobile', en: 'mobile-app-development' },
     related: ['custom-software', 'technology-consulting', 'guide-app-cost'],
-    updated: '2026-11-25',
+    published: '2026-11-25',
+    updated: '2026-11-27',
     pt: {
       eyebrow: 'Aplicações mobile',
       title: 'Desenvolvimento de Apps Mobile para iOS e Android',
@@ -203,14 +209,15 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Antes de escrever código',
+          more: 'technology-consulting',
           p: [
             'Se a ideia ainda está a ganhar forma, começar por consultoria tecnológica (requisitos, validação da ideia e roadmap) evita pagar funcionalidades de que ninguém precisa.',
           ],
         },
       ],
       faq: [
-        { q: 'Quanto custa desenvolver uma app mobile?', a: 'Depende do âmbito: plataformas, funcionalidades, integrações e design. Cada projeto tem um orçamento próprio, preparado depois de uma primeira conversa. Entre em contacto para pedir uma proposta.' },
-        { q: 'Quanto tempo demora a desenvolver uma app?', a: 'Depende do âmbito de cada projeto. O prazo fica definido no plano de execução, antes de começar o desenvolvimento, com entregas faseadas que pode testar pelo caminho.' },
+        { q: 'Quanto custa desenvolver uma app mobile?', a: 'O desenvolvimento de uma app simples começa em cerca de 5000 € + IVA. O valor sobe com a complexidade, o número de ecrãs, as funcionalidades, as integrações e o design. Cada projeto tem um orçamento próprio, preparado depois de uma primeira conversa.' },
+        { q: 'Quanto tempo demora a desenvolver uma app?', a: 'Uma app simples demora normalmente 3 a 5 meses. Pode demorar mais se a app for mais complexa, ou se as respostas e os dados necessários não chegarem a tempo. O prazo fica definido no plano de execução, antes de começar o desenvolvimento, com entregas faseadas que pode testar pelo caminho.' },
         { q: 'O código da app fica a ser meu?', a: 'Quem fica com o código e a propriedade intelectual é acordado na proposta, de acordo com as necessidades de cada cliente.' },
         { q: 'Fazem manutenção depois do lançamento da app?', a: 'Sim. Depois do lançamento continuamos disponíveis para evoluir e manter a app, e para passar conhecimento à sua equipa. Em projetos mais pequenos, a manutenção funciona com uma avença mensal; em projetos maiores, por tempo e materiais.' },
       ],
@@ -252,14 +259,15 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Before writing any code',
+          more: 'technology-consulting',
           p: [
             'If the idea is still taking shape, starting with technology consulting (requirements, idea validation and a roadmap) saves you paying for features nobody needs.',
           ],
         },
       ],
       faq: [
-        { q: 'How much does it cost to build a mobile app?', a: 'It depends on scope: platforms, features, integrations and design. Every project gets its own quote, prepared after a first conversation. Get in touch to request a proposal.' },
-        { q: 'How long does it take to build an app?', a: 'It depends on the scope of each project. The timeline is set in the delivery plan before development starts, with phased deliveries you can test along the way.' },
+        { q: 'How much does it cost to build a mobile app?', a: 'Building a simple app starts at around €5,000 + VAT. The price goes up with complexity, the number of screens, features, integrations and design. Every project gets its own quote, prepared after a first conversation.' },
+        { q: 'How long does it take to build an app?', a: 'A simple app usually takes 3 to 5 months. It can take longer if the app is more complex, or if answers and the data we need don’t arrive on time. The timeline is set in the delivery plan before development starts, with phased deliveries you can test along the way.' },
         { q: 'Do I own the app’s code?', a: 'Who owns the code and intellectual property is agreed in the proposal, based on what each client needs.' },
         { q: 'Do you maintain the app after launch?', a: 'Yes. After launch we stay available to evolve and maintain the app, and to hand knowledge over to your team. For smaller projects, maintenance runs on a monthly retainer; for bigger projects, on time and materials.' },
       ],
@@ -270,6 +278,7 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'service',
     slug: { pt: 'software-a-medida', en: 'custom-software-development' },
     related: ['mobile-apps', 'technology-consulting', 'guide-custom-vs-ready-made'],
+    published: '2026-11-25',
     updated: '2026-11-25',
     pt: {
       eyebrow: 'Software à medida',
@@ -391,7 +400,8 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'service',
     slug: { pt: 'consultoria-tecnologica', en: 'technology-consulting' },
     related: ['custom-software', 'mobile-apps', 'technical-interviews'],
-    updated: '2026-11-25',
+    published: '2026-11-25',
+    updated: '2026-11-27',
     pt: {
       eyebrow: 'Consultoria tecnológica',
       title: 'Consultoria Tecnológica para Empresas e Startups',
@@ -423,6 +433,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Da consultoria ao desenvolvimento',
+          more: 'custom-software',
           p: [
             'Muitas vezes a consultoria é o melhor ponto de partida, antes de escrever código. Pode começar por aqui e passar para o desenvolvimento quando fizer sentido, com a mesma equipa e sem perder contexto.',
           ],
@@ -465,6 +476,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'From consulting to development',
+          more: 'custom-software',
           p: [
             'Consulting is often the best place to start, before any code is written. You can start here and move on to development when it makes sense, with the same team and no loss of context.',
           ],
@@ -482,7 +494,8 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'about',
     slug: { pt: 'sobre', en: 'about' },
     related: ['case-studies', 'custom-software', 'technical-interviews'],
-    updated: '2026-11-25',
+    published: '2026-11-25',
+    updated: '2026-11-27',
     pt: {
       eyebrow: 'Quem somos',
       title: 'Sobre a VirtusPromPT',
@@ -501,7 +514,7 @@ export const PAGES: Record<PageId, PageDef> = {
         {
           h2: 'Rodrigo Fernandes, fundador e CEO',
           p: [
-            'Rodrigo Fernandes fundou a VirtusPromPT em 2025, com sete anos de experiência em desenvolvimento mobile e de software. Ao longo desse percurso trabalhou para empresas e organizações como a Appsfactory, a BMW, a New Look, a Faurecia, a Aptoide, o ICNF e o IPMA.',
+            'Rodrigo Fernandes fundou a VirtusPromPT em 2025, com sete anos de experiência em desenvolvimento mobile e de software. Ao longo desse percurso trabalhou com empresas como a Appsfactory, a Appning by Forvia e a Digital Works, em projetos para os setores automóvel, do retalho de moda e da administração pública.',
             'Principais tecnologias:',
           ],
           list: [
@@ -519,7 +532,8 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Clientes e parceiros',
-          p: ['Já trabalhámos com a Appning by Forvia, a Mindera, a We Are Meta e a Custo Marginal. Também desenvolvemos produtos próprios, como o Sim, vou.'],
+          more: 'case-studies',
+          p: ['Já trabalhámos com a Appning by Forvia, a We Are Meta e a Custo Marginal. Também desenvolvemos produtos próprios, como o Sim, vou.'],
         },
       ],
     },
@@ -541,7 +555,7 @@ export const PAGES: Record<PageId, PageDef> = {
         {
           h2: 'Rodrigo Fernandes, founder and CEO',
           p: [
-            'Rodrigo Fernandes founded VirtusPromPT in 2025, after seven years in mobile and software development. Along the way Rodrigo has worked for companies and organisations including Appsfactory, BMW, New Look, Faurecia, Aptoide, ICNF and IPMA.',
+            'Rodrigo Fernandes founded VirtusPromPT in 2025, after seven years in mobile and software development. Along the way Rodrigo has worked with companies including Appsfactory, Appning by Forvia and Digital Works, on projects for the automotive, fashion retail and public sectors.',
             'Main technologies:',
           ],
           list: [
@@ -559,7 +573,8 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Clients and partners',
-          p: ['We have worked with Appning by Forvia, Mindera, We Are Meta and Custo Marginal. We also build our own products, such as Sim, vou.'],
+          more: 'case-studies',
+          p: ['We have worked with Appning by Forvia, We Are Meta and Custo Marginal. We also build our own products, such as Sim, vou.'],
         },
       ],
     },
@@ -569,7 +584,8 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'cases',
     slug: { pt: 'clientes', en: 'clients' },
     related: ['custom-software', 'mobile-apps', 'about'],
-    updated: '2026-11-25',
+    published: '2026-11-25',
+    updated: '2026-11-27',
     pt: {
       eyebrow: 'Clientes e parceiros',
       title: 'Clientes, Parceiros e Projetos',
@@ -593,8 +609,8 @@ export const PAGES: Record<PageId, PageDef> = {
           list: ['Serviço: desenvolvimento de software'],
         },
         {
-          h2: 'We Are Meta e Mindera',
-          p: ['Trabalhamos com a We Are Meta em projetos para a Mindera, cliente da We Are Meta, integrados na equipa de desenvolvimento.'],
+          h2: 'We Are Meta: reforço de equipas de desenvolvimento',
+          p: ['Trabalhamos com a We Are Meta em projetos para os seus clientes, integrados nas equipas de desenvolvimento.'],
           list: ['Serviço: reforço de equipas'],
         },
         {
@@ -627,8 +643,8 @@ export const PAGES: Record<PageId, PageDef> = {
           list: ['Service: software development'],
         },
         {
-          h2: 'We Are Meta and Mindera',
-          p: ['We work with We Are Meta on projects for Mindera, one of We Are Meta’s clients, as part of the development team.'],
+          h2: 'We Are Meta: development team augmentation',
+          p: ['We work with We Are Meta on projects for its clients, as part of their development teams.'],
           list: ['Service: team augmentation'],
         },
         {
@@ -644,19 +660,21 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'guide',
     slug: { pt: 'quanto-custa-desenvolver-uma-app', en: 'how-much-does-an-app-cost' },
     related: ['mobile-apps', 'technology-consulting'],
-    updated: '2026-11-25',
+    published: '2026-11-25',
+    updated: '2026-11-27',
     pt: {
       eyebrow: 'Guia',
       title: 'Quanto Custa Desenvolver uma App em Portugal?',
       description:
-        'O que determina o custo de desenvolver uma app em Portugal: plataformas, funcionalidades, design, integrações e manutenção, e como reduzir o custo sem perder qualidade.',
+        'Quanto custa desenvolver uma app em Portugal: a partir de cerca de 5000 € + IVA para uma app simples. O que pesa no orçamento, quanto tempo demora e como reduzir o custo sem perder qualidade.',
       h1: 'Quanto custa desenvolver uma app em Portugal?',
-      lede: 'Não há um preço único: o custo de uma app depende sobretudo do âmbito. Este guia explica o que pesa no orçamento e como reduzir o risco antes de investir.',
+      lede: 'Não há um preço único: o custo de uma app depende sobretudo do âmbito. Na VirtusPromPT, uma app simples começa em cerca de 5000 € + IVA e demora 3 a 5 meses. Este guia explica o que pesa no orçamento e como reduzir o risco antes de investir.',
       sections: [
         {
           h2: 'Resposta curta',
           p: [
-            'Não há um preço de tabela: o custo de uma app depende do âmbito, e duas apps parecidas à primeira vista podem ter orçamentos muito diferentes. O que mais pesa são as plataformas, o número e a complexidade das funcionalidades, as integrações e o design. A forma mais rápida de ter um valor realista é definir o âmbito e pedir um orçamento.',
+            'Na VirtusPromPT, o desenvolvimento de uma app simples começa em cerca de 5000 € + IVA. O valor sobe com a complexidade, o número de ecrãs e as funcionalidades, e duas apps parecidas à primeira vista podem ter orçamentos muito diferentes.',
+            'O que mais pesa são as plataformas, o número e a complexidade das funcionalidades, as integrações e o design. A forma mais rápida de ter um valor realista é definir o âmbito e pedir um orçamento.',
           ],
         },
         {
@@ -668,6 +686,13 @@ export const PAGES: Record<PageId, PageDef> = {
             'Design: adaptar um sistema de design existente custa menos do que criar uma identidade de raiz.',
             'Servidor e área de administração: muitas apps precisam de um backend e de um painel para gerir conteúdos e utilizadores.',
             'Requisitos de segurança, acessibilidade e conformidade, como o RGPD.',
+          ],
+        },
+        {
+          h2: 'Quanto tempo demora a desenvolver uma app',
+          p: [
+            'Uma app simples demora normalmente 3 a 5 meses, da primeira conversa à publicação nas lojas. Apps com mais ecrãs, funcionalidades ou integrações demoram mais.',
+            'O prazo também depende de quem encomenda a app: quando as respostas demoram, ou quando os conteúdos e os dados necessários não estão prontos a tempo, o projeto atrasa. Ter textos, imagens e acessos preparados desde o início é a forma mais simples de cumprir o prazo.',
           ],
         },
         {
@@ -690,6 +715,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Pedir um orçamento',
+          more: 'contact',
           p: [
             'Para receber um orçamento útil, partilhe uma breve descrição do projeto, os objetivos e o prazo pretendido. Respondemos normalmente em 24–48h úteis.',
           ],
@@ -700,14 +726,15 @@ export const PAGES: Record<PageId, PageDef> = {
       eyebrow: 'Guide',
       title: 'How Much Does It Cost to Build an App in Portugal?',
       description:
-        'What drives the cost of building an app in Portugal: platforms, features, design, integrations and maintenance, and how to lower it without lowering quality.',
+        'What it costs to build an app in Portugal: from around €5,000 + VAT for a simple app. What drives the budget, how long it takes, and how to lower the cost without lowering quality.',
       h1: 'How much does it cost to build an app in Portugal?',
-      lede: 'There’s no single price: an app’s cost depends mostly on its scope. This guide explains what drives the budget and how to reduce the risk before you invest.',
+      lede: 'There’s no single price: an app’s cost depends mostly on its scope. At VirtusPromPT, a simple app starts at around €5,000 + VAT and takes 3 to 5 months. This guide explains what drives the budget and how to reduce the risk before you invest.',
       sections: [
         {
           h2: 'The short answer',
           p: [
-            'There’s no list price: an app’s cost depends on its scope, and two apps that look similar at first can have very different budgets. What weighs most is the platforms, the number and complexity of features, the integrations and the design. The quickest way to a realistic figure is to define the scope and ask for a quote.',
+            'At VirtusPromPT, building a simple app starts at around €5,000 + VAT. The price goes up with complexity, the number of screens and the features, and two apps that look similar at first can have very different budgets.',
+            'What weighs most is the platforms, the number and complexity of features, the integrations and the design. The quickest way to a realistic figure is to define the scope and ask for a quote.',
           ],
         },
         {
@@ -719,6 +746,13 @@ export const PAGES: Record<PageId, PageDef> = {
             'Design: adapting an existing design system costs less than creating an identity from scratch.',
             'Server and admin area: many apps need a backend and a dashboard to manage content and users.',
             'Security, accessibility and compliance requirements, such as the GDPR.',
+          ],
+        },
+        {
+          h2: 'How long it takes to build an app',
+          p: [
+            'A simple app usually takes 3 to 5 months, from the first conversation to publishing in the app stores. Apps with more screens, features or integrations take longer.',
+            'The timeline also depends on you: when answers are slow, or when the content and data the app needs aren’t ready on time, the project slips. Having text, images and access ready from the start is the simplest way to stay on schedule.',
           ],
         },
         {
@@ -741,6 +775,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Getting a quote',
+          more: 'contact',
           p: [
             'For a useful quote, share a short description of the project, your goals and your intended timeline. We usually reply within 1–2 business days.',
           ],
@@ -753,7 +788,8 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'guide',
     slug: { pt: 'software-a-medida-ou-pronto-a-usar', en: 'custom-vs-off-the-shelf-software' },
     related: ['custom-software', 'technology-consulting'],
-    updated: '2026-11-25',
+    published: '2026-11-25',
+    updated: '2026-11-27',
     pt: {
       eyebrow: 'Guia',
       title: 'Software à Medida ou Pronto a Usar: Qual Escolher?',
@@ -805,6 +841,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Ainda tem dúvidas?',
+          more: 'technology-consulting',
           p: [
             'Uma conversa de consultoria tecnológica, antes de qualquer desenvolvimento, ajuda a decidir com base nos números e nos processos da sua empresa.',
           ],
@@ -862,6 +899,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Still not sure?',
+          more: 'technology-consulting',
           p: [
             'A technology consulting conversation, before any development, helps you decide based on your own numbers and processes.',
           ],

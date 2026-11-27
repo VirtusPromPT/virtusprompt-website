@@ -12,7 +12,6 @@ const t = strings[lang];
 const pageLink = (id?: string) => (id && isPublished(id as PageId) ? ROUTES[id as PageId][lang] : undefined);
 const clients = [
   { file: 'appning', name: 'Appning by Forvia' },
-  { file: 'mindera', name: 'Mindera' },
   { file: 'wearemeta', name: 'We Are Meta' },
   { file: 'customarginal', name: 'Custo Marginal' },
 ];
@@ -69,10 +68,10 @@ const clients = [
     <p class="mono">{t.products.label}</p>
     <a class="product" href={SITE.simvou} target="_blank" rel="noopener">
       <span class="pmark" aria-hidden="true" style="--src:url('/images/simvou.svg')"></span>
-      <span>
+      <div>
         <h2 class="pname">Sim, vou <span class="mono">{t.products.tag}</span></h2>
         <span class="ptext">{t.products.simvou}</span>
-      </span>
+      </div>
       <span class="plink mono">simvou.pt <span class="arr" aria-hidden="true">↗</span></span>
     </a>
   </div>

@@ -41,13 +41,19 @@ if (page.kind === 'guide') {
     headline: c.h1,
     description: c.description,
     inLanguage,
-    datePublished: page.updated,
+    datePublished: page.published,
     dateModified: page.updated,
     author: { '@id': new URL('/#person', SITE.url).href },
     publisher: { '@id': orgId },
     mainEntityOfPage: { '@id': `${url}#webpage` },
   });
 }
+// A section's internal link: to the contact form, or to another page (only once that page is published).
+const moreLink = (to?: PageId | 'contact') => {
+  if (!to) return undefined;
+  if (to === 'contact') return { href: `${ROUTES.home[lang]}#contact`, label: t.cta.proposal };
+  return draft || isPublished(to) ? { href: ROUTES[to][lang], label: PAGES[to][lang].h1 } : undefined;
+};
 const fmtDate = new Date(page.updated).toLocaleDateString(lang === 'en' ? 'en-GB' : 'pt-PT', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 <Base lang={lang} route={id} title={c.title} description={c.description} noindex={draft} pageType={pageType} schema={schema}>
@@ -81,6 +87,7 @@ const fmtDate = new Date(page.updated).toLocaleDateString(lang === 'en' ? 'en-GB
               {s.list && s.ordered && <ol>{s.list.map((li) => <li>{splitTodos(li).map((x) => (x.todo ? <mark class="todo">{x.text}</mark> : x.text))}</li>)}</ol>}
               {s.list && !s.ordered && <ul>{s.list.map((li) => <li>{splitTodos(li).map((x) => (x.todo ? <mark class="todo">{x.text}</mark> : x.text))}</li>)}</ul>}
               {s.link && <p><a href={s.link.href} target="_blank" rel="noopener">{s.link.label} ↗</a></p>}
+              {moreLink(s.more) && <p><a class="svc-more" href={moreLink(s.more)!.href}>{moreLink(s.more)!.label} <span class="arr" aria-hidden="true">→</span></a></p>}
             </section>
           ))}
         </div>

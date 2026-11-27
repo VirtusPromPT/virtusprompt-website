@@ -10,6 +10,10 @@ export const SITE = {
   simvou: 'https://simvou.pt/?utm_source=virtusprompt&utm_medium=referral',
   // Founder, managing partner and CEO (shown as `founder` in the structured data).
   person: 'Rodrigo Fernandes',
+  // The founder's own public profiles (LinkedIn, GitHub, ...), used in the structured data. Leave empty and none are listed.
+  personProfiles: ['https://www.linkedin.com/in/rodrigo-fs-fernandes/', 'https://github.com/rfsfernandes'] as string[],
+  // Year the company was founded (used in the structured data).
+  founded: '2025',
   // Company identification shown in the footer and in the structured data.
   // Leave a value empty ('') and it is simply not shown.
   nipc: '519208234',
@@ -37,3 +41,11 @@ export const ROUTES = {
 };
 
 export type RouteKey = 'home' | 'privacy' | 'thanks' | PageId;
+
+// The last real change to each page (YYYY-MM-DD), published as <lastmod> in the sitemap.
+// Inner pages take theirs from `updated` in src/i18n/pages.ts; change the two below by hand.
+export const LAST_UPDATED: Record<Exclude<RouteKey, 'thanks'>, string> = {
+  home: '2026-11-25',
+  privacy: '2026-11-27',
+  ...(Object.fromEntries(PAGE_IDS.map((id) => [id, PAGES[id].updated])) as Record<PageId, string>),
+};
