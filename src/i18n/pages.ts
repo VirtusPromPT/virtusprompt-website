@@ -514,7 +514,7 @@ export const PAGES: Record<PageId, PageDef> = {
         {
           h2: 'Rodrigo Fernandes, fundador e CEO',
           p: [
-            'Rodrigo Fernandes fundou a VirtusPromPT em 2025, com sete anos de experiência em desenvolvimento mobile e de software. Ao longo desse percurso trabalhou com empresas como a Appsfactory, a Faurecia Aptoide e a Digital Works, em projetos para os setores automóvel, do retalho de moda e da administração pública.',
+            'Rodrigo Fernandes fundou a VirtusPromPT em 2025, com sete anos de experiência em desenvolvimento mobile e de software. Ao longo desse percurso trabalhou com empresas como a Appsfactory, a Appning by Forvia e a Digital Works, em projetos para os setores automóvel, do retalho de moda e da administração pública.',
             'Principais tecnologias:',
           ],
           list: [
@@ -555,7 +555,7 @@ export const PAGES: Record<PageId, PageDef> = {
         {
           h2: 'Rodrigo Fernandes, founder and CEO',
           p: [
-            'Rodrigo Fernandes founded VirtusPromPT in 2025, after seven years in mobile and software development. Along the way Rodrigo has worked with companies including Appsfactory, Faurecia Aptoide and Digital Works, on projects for the automotive, fashion retail and public sectors.',
+            'Rodrigo Fernandes founded VirtusPromPT in 2025, after seven years in mobile and software development. Along the way Rodrigo has worked with companies including Appsfactory, Appning by Forvia and Digital Works, on projects for the automotive, fashion retail and public sectors.',
             'Main technologies:',
           ],
           list: [
