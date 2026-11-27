@@ -14,6 +14,8 @@ import fontDisplayMedium from '@fontsource/space-grotesk/files/space-grotesk-lat
 import fontBody from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2?url';
 import fontMono from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url';
 const preloadFonts = [fontDisplayLight, fontDisplayMedium, fontBody, fontMono];
+import { getImage } from 'astro:assets';
+import rodrigo from '../assets/rodrigo.jpg';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE, ROUTES, type Lang, type RouteKey } from '../config';
@@ -32,7 +34,8 @@ interface Props {
 }
 const { lang, route, title, description, noindex = false, pageType = 'WebPage', schema = [] } = Astro.props;
 const t = strings[lang];
-const pageTitle = title ? `${title} | ${SITE.brand}` : t.meta.title;
+// A title that already names the brand ("About VirtusPromPT") doesn't get it added a second time.
+const pageTitle = !title ? t.meta.title : title.includes(SITE.brand) ? title : `${title} | ${SITE.brand}`;
 const pageDesc = description ?? t.meta.description;
 const canonical = new URL(ROUTES[route][lang], SITE.url).href;
 const alt = (l: Lang) => new URL(ROUTES[route][l], SITE.url).href;
@@ -45,6 +48,8 @@ const homeLang = new URL(ROUTES.home[lang], SITE.url).href;
 const orgId = `${home}#organization`;
 const personId = `${home}#person`;
 const sameAs = SITE.profiles.map((p) => p.url);
+// The founder's portrait, at the same size the pages show it (so no extra image is generated).
+const portrait = await getImage({ src: rodrigo, width: 600, height: 600, quality: 80 });
 // 'Street 1, 1234-567 Locality' -> schema.org PostalAddress (falls back to the whole string as the street).
 function postalAddress(office: string) {
   const m = office.match(/^(.*),\s*(\d{4}-\d{3})\s+(.+)$/);
@@ -85,6 +90,7 @@ const jsonLd = {
         availableLanguage: ['pt-PT', 'en'],
       },
       areaServed: { '@type': 'Country', name: 'Portugal' },
+      ...(SITE.founded ? { foundingDate: SITE.founded } : {}),
       founder: { '@id': personId },
       employee: { '@id': personId },
       ...(SITE.nipc ? { taxID: SITE.nipc } : {}),
@@ -107,6 +113,9 @@ const jsonLd = {
       name: SITE.person,
       jobTitle: t.about.role,
       worksFor: { '@id': orgId },
+      url: new URL(ROUTES.about[lang], SITE.url).href,
+      image: new URL(portrait.src, SITE.url).href,
+      ...(SITE.personProfiles.length ? { sameAs: SITE.personProfiles } : {}),
     },
     {
       '@type': 'WebSite',
@@ -149,7 +158,9 @@ const jsonLd = {
       </>
     )}
     {preloadFonts.map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="theme-color" content="#EEF0EF" media="(prefers-color-scheme: light)" />

@@ -9,7 +9,10 @@ export interface Section {
   p?: string[];
   list?: string[];
   ordered?: boolean;
+  /** A link to another site, opened in a new tab. */
   link?: { label: string; href: string };
+  /** A link to another page of this site (by its id), or to the contact form. The link text is that page's heading. */
+  more?: PageId | 'contact';
 }
 
 export interface Copy {
@@ -40,7 +43,8 @@ export interface PageDef {
   kind: PageKind;
   slug: { pt: string; en: string };
   related: PageId[];
-  updated: string; // YYYY-MM-DD, shown on guides and used in the structured data
+  published: string; // YYYY-MM-DD, the day the page first went live. Never changes.
+  updated: string; // YYYY-MM-DD, the last real change to the text. Shown on guides, and used in the sitemap and the structured data.
   pt: Copy;
   en: Copy;
 }
@@ -50,6 +54,7 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'service',
     slug: { pt: 'entrevistas-tecnicas', en: 'technical-interviews' },
     related: ['technology-consulting', 'about'],
+    published: '2026-11-25',
     updated: '2026-11-25',
     pt: {
       eyebrow: 'Recrutamento técnico',
@@ -165,7 +170,8 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'service',
     slug: { pt: 'desenvolvimento-apps-mobile', en: 'mobile-app-development' },
     related: ['custom-software', 'technology-consulting', 'guide-app-cost'],
-    updated: '2026-11-25',
+    published: '2026-11-25',
+    updated: '2026-11-27',
     pt: {
       eyebrow: 'Aplicações mobile',
       title: 'Desenvolvimento de Apps Mobile para iOS e Android',
@@ -203,6 +209,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Antes de escrever código',
+          more: 'technology-consulting',
           p: [
             'Se a ideia ainda está a ganhar forma, começar por consultoria tecnológica (requisitos, validação da ideia e roadmap) evita pagar funcionalidades de que ninguém precisa.',
           ],
@@ -252,6 +259,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Before writing any code',
+          more: 'technology-consulting',
           p: [
             'If the idea is still taking shape, starting with technology consulting (requirements, idea validation and a roadmap) saves you paying for features nobody needs.',
           ],
@@ -270,6 +278,7 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'service',
     slug: { pt: 'software-a-medida', en: 'custom-software-development' },
     related: ['mobile-apps', 'technology-consulting', 'guide-custom-vs-ready-made'],
+    published: '2026-11-25',
     updated: '2026-11-25',
     pt: {
       eyebrow: 'Software à medida',
@@ -391,7 +400,8 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'service',
     slug: { pt: 'consultoria-tecnologica', en: 'technology-consulting' },
     related: ['custom-software', 'mobile-apps', 'technical-interviews'],
-    updated: '2026-11-25',
+    published: '2026-11-25',
+    updated: '2026-11-27',
     pt: {
       eyebrow: 'Consultoria tecnológica',
       title: 'Consultoria Tecnológica para Empresas e Startups',
@@ -423,6 +433,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Da consultoria ao desenvolvimento',
+          more: 'custom-software',
           p: [
             'Muitas vezes a consultoria é o melhor ponto de partida, antes de escrever código. Pode começar por aqui e passar para o desenvolvimento quando fizer sentido, com a mesma equipa e sem perder contexto.',
           ],
@@ -465,6 +476,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'From consulting to development',
+          more: 'custom-software',
           p: [
             'Consulting is often the best place to start, before any code is written. You can start here and move on to development when it makes sense, with the same team and no loss of context.',
           ],
@@ -482,7 +494,8 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'about',
     slug: { pt: 'sobre', en: 'about' },
     related: ['case-studies', 'custom-software', 'technical-interviews'],
-    updated: '2026-11-25',
+    published: '2026-11-25',
+    updated: '2026-11-27',
     pt: {
       eyebrow: 'Quem somos',
       title: 'Sobre a VirtusPromPT',
@@ -519,6 +532,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Clientes e parceiros',
+          more: 'case-studies',
           p: ['Já trabalhámos com a Appning by Forvia, a Mindera, a We Are Meta e a Custo Marginal. Também desenvolvemos produtos próprios, como o Sim, vou.'],
         },
       ],
@@ -559,6 +573,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Clients and partners',
+          more: 'case-studies',
           p: ['We have worked with Appning by Forvia, Mindera, We Are Meta and Custo Marginal. We also build our own products, such as Sim, vou.'],
         },
       ],
@@ -569,6 +584,7 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'cases',
     slug: { pt: 'clientes', en: 'clients' },
     related: ['custom-software', 'mobile-apps', 'about'],
+    published: '2026-11-25',
     updated: '2026-11-25',
     pt: {
       eyebrow: 'Clientes e parceiros',
@@ -644,7 +660,8 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'guide',
     slug: { pt: 'quanto-custa-desenvolver-uma-app', en: 'how-much-does-an-app-cost' },
     related: ['mobile-apps', 'technology-consulting'],
-    updated: '2026-11-25',
+    published: '2026-11-25',
+    updated: '2026-11-27',
     pt: {
       eyebrow: 'Guia',
       title: 'Quanto Custa Desenvolver uma App em Portugal?',
@@ -690,6 +707,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Pedir um orçamento',
+          more: 'contact',
           p: [
             'Para receber um orçamento útil, partilhe uma breve descrição do projeto, os objetivos e o prazo pretendido. Respondemos normalmente em 24–48h úteis.',
           ],
@@ -741,6 +759,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Getting a quote',
+          more: 'contact',
           p: [
             'For a useful quote, share a short description of the project, your goals and your intended timeline. We usually reply within 1–2 business days.',
           ],
@@ -753,7 +772,8 @@ export const PAGES: Record<PageId, PageDef> = {
     kind: 'guide',
     slug: { pt: 'software-a-medida-ou-pronto-a-usar', en: 'custom-vs-off-the-shelf-software' },
     related: ['custom-software', 'technology-consulting'],
-    updated: '2026-11-25',
+    published: '2026-11-25',
+    updated: '2026-11-27',
     pt: {
       eyebrow: 'Guia',
       title: 'Software à Medida ou Pronto a Usar: Qual Escolher?',
@@ -805,6 +825,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Ainda tem dúvidas?',
+          more: 'technology-consulting',
           p: [
             'Uma conversa de consultoria tecnológica, antes de qualquer desenvolvimento, ajuda a decidir com base nos números e nos processos da sua empresa.',
           ],
@@ -862,6 +883,7 @@ export const PAGES: Record<PageId, PageDef> = {
         },
         {
           h2: 'Still not sure?',
+          more: 'technology-consulting',
           p: [
             'A technology consulting conversation, before any development, helps you decide based on your own numbers and processes.',
           ],

@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import { ROUTES } from './src/config.ts';
+import { ROUTES, LAST_UPDATED } from './src/config.ts';
 import { isDraft } from './src/i18n/pages.ts';
 
 const SITE_URL = 'https://www.virtusprompt.com';
@@ -13,6 +13,9 @@ const abs = (/** @type {string} */ path) => new URL(path, SITE_URL).href;
 const alternates = new Map();
 /** @type {Set<string>} */
 const excluded = new Set();
+// The last real change to each page, for <lastmod>.
+/** @type {Map<string, string>} */
+const lastmod = new Map();
 for (const [key, route] of Object.entries(ROUTES)) {
   // Thank-you pages are not useful in search results; draft pages (still with TODOs) are noindex.
   if (key === 'thanks' || isDraft(key)) {
@@ -27,6 +30,9 @@ for (const [key, route] of Object.entries(ROUTES)) {
   ];
   alternates.set(abs(route.pt), links);
   alternates.set(abs(route.en), links);
+  const updated = LAST_UPDATED[/** @type {keyof typeof LAST_UPDATED} */ (key)];
+  lastmod.set(abs(route.pt), updated);
+  lastmod.set(abs(route.en), updated);
 }
 
 export default defineConfig({
@@ -38,6 +44,8 @@ export default defineConfig({
       serialize(item) {
         const links = alternates.get(item.url);
         if (links) item.links = links;
+        const updated = lastmod.get(item.url);
+        if (updated) item.lastmod = updated;
         return item;
       },
     }),
