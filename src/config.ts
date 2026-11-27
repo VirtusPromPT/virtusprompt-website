@@ -46,6 +46,6 @@ export type RouteKey = 'home' | 'privacy' | 'thanks' | PageId;
 // Inner pages take theirs from `updated` in src/i18n/pages.ts; change the two below by hand.
 export const LAST_UPDATED: Record<Exclude<RouteKey, 'thanks'>, string> = {
   home: '2026-11-25',
-  privacy: '2026-11-25',
+  privacy: '2026-11-27',
   ...(Object.fromEntries(PAGE_IDS.map((id) => [id, PAGES[id].updated])) as Record<PageId, string>),
 };
