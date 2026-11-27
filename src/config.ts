@@ -11,7 +11,7 @@ export const SITE = {
   // Founder, managing partner and CEO (shown as `founder` in the structured data).
   person: 'Rodrigo Fernandes',
   // The founder's own public profiles (LinkedIn, GitHub, ...), used in the structured data. Leave empty and none are listed.
-  personProfiles: [] as string[],
+  personProfiles: ['https://www.linkedin.com/in/rodrigo-fs-fernandes/', 'https://github.com/rfsfernandes'] as string[],
   // Year the company was founded (used in the structured data).
   founded: '2025',
   // Company identification shown in the footer and in the structured data.

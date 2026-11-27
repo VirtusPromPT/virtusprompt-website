@@ -109,10 +109,10 @@ p{margin:0}
 /* clients */
 .clients{border-bottom:1px solid var(--line)}
 .clients .wrap{display:grid; grid-template-columns:180px minmax(0,1fr); align-items:center; gap:24px; padding-block:12px}
-.logos{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); border-left:1px solid var(--line)}
+.logos{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); border-left:1px solid var(--line)}
 .logo{height:132px; border-right:1px solid var(--line); position:relative}
 .logo::before{content:""; position:absolute; inset:4px 8px; background:var(--fg); opacity:.78; -webkit-mask:var(--src) center/contain no-repeat; mask:var(--src) center/contain no-repeat}
-@media (max-width:760px){.clients .wrap{grid-template-columns:minmax(0,1fr)} .logos{grid-template-columns:repeat(2,minmax(0,1fr)); border-top:1px solid var(--line)} .logo{border-bottom:1px solid var(--line)}}
+@media (max-width:760px){.clients .wrap{grid-template-columns:minmax(0,1fr)} .logos{border-top:1px solid var(--line)} .logo{height:96px; border-bottom:1px solid var(--line)}}
 
 /* products: same grid as the clients row */
 .products{border-bottom:1px solid var(--line)}
